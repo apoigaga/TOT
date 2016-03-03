@@ -56,7 +56,7 @@ class Mark extends \yii\db\ActiveRecord
         return $this->hasOne(trainerAnswer::classname(),['trainerAnswer_id'=> 'trainerAnswer_id']);
     }
 
-    trainerAnswer_id
+    
 
 
 }
