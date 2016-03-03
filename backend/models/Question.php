@@ -27,7 +27,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             [['question'], 'required'],
-            [['question'], 'string', 'max' => 50]
+            [['question'], 'string', 'max' => 500]
         ];
     }
 
