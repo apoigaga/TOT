@@ -18,8 +18,8 @@ class TrainerSearch extends Trainer
     public function rules()
     {
         return [
-            [['trainer_id', 'question_id', 'status_id', 'trainerAnswer_id', 'mark_id'], 'integer'],
-            [['trainer_name', 'trainer_ic', 'trainer_studentID', 'trainer_address', 'trainer_email', 'training_id'], 'safe'],
+            [['trainer_id'], 'integer'],
+            [['trainer_name', 'trainer_icNO', 'trainer_address', 'trainer_phoneNO', 'trainer_email', 'trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification', 'trainer_occupation', 'trainer_dateOfTraining'], 'safe'],
         ];
     }
 
@@ -57,18 +57,18 @@ class TrainerSearch extends Trainer
 
         $query->andFilterWhere([
             'trainer_id' => $this->trainer_id,
-            'question_id' => $this->question_id,
-            'status_id' => $this->status_id,
-            'trainerAnswer_id' => $this->trainerAnswer_id,
-            'mark_id' => $this->mark_id,
+            'trainer_dateOfTraining' => $this->trainer_dateOfTraining,
         ]);
 
         $query->andFilterWhere(['like', 'trainer_name', $this->trainer_name])
-            ->andFilterWhere(['like', 'trainer_ic', $this->trainer_ic])
-            ->andFilterWhere(['like', 'trainer_studentID', $this->trainer_studentID])
+            ->andFilterWhere(['like', 'trainer_icNO', $this->trainer_icNO])
             ->andFilterWhere(['like', 'trainer_address', $this->trainer_address])
+            ->andFilterWhere(['like', 'trainer_phoneNO', $this->trainer_phoneNO])
             ->andFilterWhere(['like', 'trainer_email', $this->trainer_email])
-            ->andFilterWhere(['like', 'training_id', $this->training_id]);
+            ->andFilterWhere(['like', 'trainer_race', $this->trainer_race])
+            ->andFilterWhere(['like', 'trainer_maritialStatus', $this->trainer_maritialStatus])
+            ->andFilterWhere(['like', 'trainer_highestQualification', $this->trainer_highestQualification])
+            ->andFilterWhere(['like', 'trainer_occupation', $this->trainer_occupation]);
 
         return $dataProvider;
     }

@@ -19,23 +19,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trainer_name') ?>
 
-    <?= $form->field($model, 'trainer_ic') ?>
-
-    <?= $form->field($model, 'trainer_studentID') ?>
+    <?= $form->field($model, 'trainer_icNO') ?>
 
     <?= $form->field($model, 'trainer_address') ?>
 
+    <?= $form->field($model, 'trainer_phoneNO') ?>
+
     <?php // echo $form->field($model, 'trainer_email') ?>
 
-    <?php // echo $form->field($model, 'question_id') ?>
+    <?php // echo $form->field($model, 'trainer_race') ?>
 
-    <?php // echo $form->field($model, 'status_id') ?>
+    <?php // echo $form->field($model, 'trainer_maritialStatus') ?>
 
-    <?php // echo $form->field($model, 'training_id') ?>
+    <?php // echo $form->field($model, 'trainer_highestQualification') ?>
 
-    <?php // echo $form->field($model, 'trainerAnswer_id') ?>
+    <?php // echo $form->field($model, 'trainer_occupation') ?>
 
-    <?php // echo $form->field($model, 'mark_id') ?>
+    <?php // echo $form->field($model, 'trainer_dateOfTraining') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

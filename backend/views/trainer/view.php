@@ -30,15 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'trainer_id',
             'trainer_name',
-            'trainer_ic',
-            'trainer_studentID',
+            'trainer_icNO',
             'trainer_address',
+            'trainer_phoneNO',
             'trainer_email:email',
-            'question_id',
-            'status_id',
-            'training_id',
-            'trainerAnswer_id',
-            'mark_id',
+            'trainer_race',
+            'trainer_maritialStatus',
+            'trainer_highestQualification',
+            'trainer_occupation',
+            'trainer_dateOfTraining',
         ],
     ]) ?>
 
