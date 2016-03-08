@@ -2,16 +2,21 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Training of Trainers!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">It's not what you teach but how you teach it.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p>
+            <?= Html::a('Register Trainer', ['trainer/create/'], ['class'=>'btn btn-success']) ?>
+
+        </p>
     </div>
 
     <div class="body-content">
