@@ -1,19 +1,21 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
 
-class m160303_084747_dropTableTrainer extends Migration
+class m160312_110905_addAttributeTableUser extends Migration
 {
     public function up()
     {
-
+        $this->addColumn('user','ic_number',$this->string());
 
     }
 
     public function down()
-    {
-        $this->dropTable('trainer');
+    { 
+
+        echo "m160312_110905_addAttributeTableUser cannot be reverted.\n";
+
+        return false;
     }
 
     /*
