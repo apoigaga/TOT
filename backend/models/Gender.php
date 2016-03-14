@@ -41,4 +41,9 @@ class Gender extends \yii\db\ActiveRecord
             'gender_type' => 'Gender Type',
         ];
     }
+
+    public function getTrainer()
+    {
+        return $this->hasOne(Trainer::classname(),['trainer_id'=> 'trainer_id']);
+    }
 }

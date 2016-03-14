@@ -64,4 +64,40 @@ class Trainer extends \yii\db\ActiveRecord
             'trainer_dateOfTraining' => 'Trainer Date Of Training',
         ];
     }
+
+    public function getQuestion()
+    {
+        return $this->hasMany(Question::classname(),['question_id'=> 'question_id']);
+    }
+
+    public function getStatus()
+    {
+        return $this->hasOne(Status::classname(),['status_id'=> 'status_id']);
+    }
+
+    public function getTrainerAnswer()
+    {
+        return $this->hasMany(trainerAnswer::classname(),['trainerAnswer_id'=> 'trainerAnswer_id']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::classname(),['user_id'=> 'user_id']);
+    }
+
+    public function getTraining()
+    {
+        return $this->hasOne(Training::classname(),['training_id'=> 'training_id']);
+    }
+
+    public function getMark()
+    {
+        return $this->hasOne(Mark::classname(),['mark_id'=> 'mark_id']);
+    }
+
+    public function getGender()
+    {
+        return $this->hasOne(Gender::classname(),['gender_id'=> 'gender_id']);
+    }
 }
+

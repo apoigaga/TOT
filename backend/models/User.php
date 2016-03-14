@@ -64,4 +64,12 @@ class User extends \yii\db\ActiveRecord
             'ic_number' => 'Ic Number',
         ];
     }
+
+    public function getLevel(){
+        return $this->hasOne(Level::className(), ['level_id' => 'level_id']);
+    }
+
+    public function getTrainer(){
+        return $this->hasOne(Trainer::className(), ['trainer_id' => '_id']);
+    }
 }
