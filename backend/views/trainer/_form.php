@@ -14,13 +14,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trainer_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'trainer_ic')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'trainer_studentID')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'trainer_icNO')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'trainer_address')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'trainer_phoneNO')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'trainer_email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'trainer_race')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'trainer_maritialStatus')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'trainer_highestQualification')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'trainer_occupation')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'trainer_dateOfTraining')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

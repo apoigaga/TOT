@@ -9,11 +9,15 @@ use Yii;
  *
  * @property integer $trainer_id
  * @property string $trainer_name
- * @property string $trainer_ic
- * @property string $trainer_studentID
+ * @property string $trainer_icNO
  * @property string $trainer_address
+ * @property string $trainer_phoneNO
  * @property string $trainer_email
- * @property string $trainer_training_date
+ * @property string $trainer_race
+ * @property string $trainer_maritialStatus
+ * @property string $trainer_highestQualification
+ * @property string $trainer_occupation
+ * @property string $trainer_dateOfTraining
  */
 class Trainer extends \yii\db\ActiveRecord
 {
@@ -31,8 +35,13 @@ class Trainer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trainer_name', 'trainer_ic', 'trainer_studentID', 'trainer_address', 'trainer_email', 'trainer_training_date'], 'required'],
-            [['trainer_name', 'trainer_ic', 'trainer_studentID', 'trainer_address', 'trainer_email', 'trainer_training_date'], 'string', 'max' => 50]
+            [['trainer_name', 'trainer_icNO', 'trainer_address', 'trainer_phoneNO', 'trainer_email', 'trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification', 'trainer_occupation', 'trainer_dateOfTraining'], 'required'],
+            [['trainer_dateOfTraining'], 'safe'],
+            [['trainer_name', 'trainer_email', 'trainer_occupation'], 'string', 'max' => 50],
+            [['trainer_icNO'], 'string', 'max' => 12],
+            [['trainer_address'], 'string', 'max' => 100],
+            [['trainer_phoneNO'], 'string', 'max' => 15],
+            [['trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification'], 'string', 'max' => 20]
         ];
     }
 
@@ -44,13 +53,18 @@ class Trainer extends \yii\db\ActiveRecord
         return [
             'trainer_id' => 'Trainer ID',
             'trainer_name' => 'Trainer Name',
-            'trainer_ic' => 'Trainer Ic',
-            'trainer_studentID' => 'Trainer Student ID',
+            'trainer_icNO' => 'Trainer Ic No',
             'trainer_address' => 'Trainer Address',
+            'trainer_phoneNO' => 'Trainer Phone No',
             'trainer_email' => 'Trainer Email',
-            'trainer_training_date' => 'Trainer Training Date',
+            'trainer_race' => 'Trainer Race',
+            'trainer_maritialStatus' => 'Trainer Maritial Status',
+            'trainer_highestQualification' => 'Trainer Highest Qualification',
+            'trainer_occupation' => 'Trainer Occupation',
+            'trainer_dateOfTraining' => 'Trainer Date Of Training',
         ];
     }
+
     public function getQuestion()
     {
         return $this->hasMany(Question::classname(),['question_id'=> 'question_id']);
@@ -61,7 +75,7 @@ class Trainer extends \yii\db\ActiveRecord
         return $this->hasOne(Status::classname(),['status_id'=> 'status_id']);
     }
 
-    public function gettrainerAnswer()
+    public function getTrainerAnswer()
     {
         return $this->hasMany(trainerAnswer::classname(),['trainerAnswer_id'=> 'trainerAnswer_id']);
     }
@@ -81,9 +95,9 @@ class Trainer extends \yii\db\ActiveRecord
         return $this->hasOne(Mark::classname(),['mark_id'=> 'mark_id']);
     }
 
-
-
-
-    
-    
+    public function getGender()
+    {
+        return $this->hasOne(Gender::classname(),['gender_id'=> 'gender_id']);
+    }
 }
+
