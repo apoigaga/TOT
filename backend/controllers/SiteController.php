@@ -7,6 +7,9 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
+
+
+
 /**
  * Site controller
  */
@@ -20,6 +23,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['create'],
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
@@ -56,6 +60,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+        $question = Question::find()->all();
+
+        return $this->render('question1',['question'=>$question]);
+
+        
     }
 
     public function actionLogin()
@@ -79,5 +88,20 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionQuestion1()
+    {
+        return $this->render('question1');
+    }
+
+    public function actionQuiz()
+    {
+        return $this->render('quiz');
+        // return $this->render('quiz',array('question'=>$question));
+    }
+    public function actionUserAnswer()
+    {
+        return $this->render('userAnswer');
     }
 }

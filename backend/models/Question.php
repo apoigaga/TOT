@@ -57,6 +57,11 @@ class Question extends \yii\db\ActiveRecord
         return $this->hasMany(wrongAnswer::classname(),['wrongAnswer_id'=> 'wrongAnswer_id']);
     }
 
+    public function getAnswer()
+    {
+        return $this->hasMany(Answer::classname(),['answer_id'=> 'answer_id']);
+    }
+
 
 
     
