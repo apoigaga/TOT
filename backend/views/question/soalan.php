@@ -4,7 +4,9 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
-
+use backend\models\Answer;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 
 
@@ -15,7 +17,6 @@ use yii\widgets\ActiveForm;
 $this->title = 'Questions';
 $this->params['breadcrumbs'][] = $this->title;
 
-$form = ActiveForm::begin();
 ?>
 
 
@@ -61,19 +62,89 @@ $form = ActiveForm::begin();
 
 <body class="nav-md">
 
+
+
     <div class="container body">
 
 
-        <div class="main_container">
+        <div class="main_container">         
 
-            
-
-            <!-- page content -->
-            
+            <!-- page content -->            
                    
                     <div class="clearfix"></div>
 
                     <div class="row">
+                  <!--   <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        
+                        
+                        <div id="clockdiv">
+                          <!-- <div>
+                            <span class="days"></span>
+                            <div class="smalltext">Days</div>
+                          </div> -->
+                        <!--   <div>
+                            <span class="hours"></span>
+                            <div class="smalltext">Hours</div>
+                          </div>
+                          <div>
+                            <span class="minutes"></span>
+                            <div class="smalltext">Minutes</div>
+                          </div>
+                          <div>
+                            <span class="seconds"></span>
+                            <div class="smalltext">Seconds</div>
+                          </div>
+                        </div> -->
+
+
+                         <script type="text/javascript">
+                        //     function getTimeRemaining(endtime) {
+                        //   var t = Date.parse(endtime) - Date.parse(new Date());
+                        //   var seconds = Math.floor((t / 1000) % 60);
+                        //   var minutes = Math.floor((t / 1000 / 60) % 60);
+                        //   var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                        //   //var days = Math.floor(t / (1000 * 60 * 60 * 24));
+                        //   return {
+                        //     'total': t,
+                        //     //'days': days,
+                        //     'hours': hours,
+                        //     'minutes': minutes,
+                        //     'seconds': seconds
+                        //   };
+                        // }
+
+                        // function initializeClock(id, endtime) {
+                        //   var clock = document.getElementById(id);
+                        //   //var daysSpan = clock.querySelector('.days');
+                        //   var hoursSpan = clock.querySelector('.hours');
+                        //   var minutesSpan = clock.querySelector('.minutes');
+                        //   var secondsSpan = clock.querySelector('.seconds');
+
+                        //   function updateClock() {
+                        //     var t = getTimeRemaining(endtime);
+
+                        //     //daysSpan.innerHTML = t.days;
+                        //     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                        //     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                        //     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                        //     if (t.total <= 0) {
+                        //       clearInterval(timeinterval);
+                        //     }
+                        //   }
+
+                        //   updateClock();
+                        //   var timeinterval = setInterval(updateClock, 1000);
+                        // }
+                        // var timeInMinutes = 90;
+                        // var currentTime = Date.parse(new Date());
+                        // var deadline = new Date(currentTime + timeInMinutes*60*1000);
+                        // //var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
+                        // initializeClock('clockdiv', deadline);
+                         </script>
+                    </div>
+                    </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
@@ -82,6 +153,8 @@ $form = ActiveForm::begin();
 
 
                                     <h2>ONLINE EXAM TRAINING FOR TRAINER</h2>
+
+
                                     <!-- Tabs -->
                                     <div id="wizard_verticle" class="form_wizard wizard_verticle">
                                         <ul class="list-unstyled wizard_steps">
@@ -145,7 +218,11 @@ $form = ActiveForm::begin();
                                                 <h1><?= Html::encode($this->title) ?></h1>
                                                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                                                <?php foreach ($soalan as $row) {
+
+                                                <?php 
+                                                echo "<form action='".Url::to('index.php/trainer-answer/create')."' method='post'>";
+
+                                                foreach ($soalan as $row) {
                                                 echo "<div>";
                                                     echo "<font size='4'>";
                                                     echo $row['soalan']."<br/>";
@@ -154,7 +231,7 @@ $form = ActiveForm::begin();
 
                                                     $soalan_id = $row['id'];
                                                     $query = new Query;
-                                                    $query -> select(['answer.answer as answer'])
+                                                    $query -> select(['answer.answer as answer','answer.answer_id as answerid'])
                                                            -> from('question','answer')
                                                            -> innerJoin('answer','answer.question_id = question.question_id')
                                                            ->where('answer.question_id = "'.$soalan_id.'" ')
@@ -162,17 +239,30 @@ $form = ActiveForm::begin();
 
                                                            $command = $query->createCommand();
                                                            $xData = $command->queryAll();
-
+                                                        
+                                                            
                                                            foreach ($xData as $ans) 
                                                            {
                                                             echo "<font size='3'>";
-                                                            echo $ans['answer']."<br/>";
+                                                            echo "<input type='radio' name='jawapan".$row['qcode']."' value='".$ans['answerid']."'>".$ans['answer']."<br/>";
                                                             echo "</font>";
-                                                            }                                                
+                                                            
+                                                            } 
+                                                                                                          
                                                   
-                                                echo "</div><br/>";        
-                                                }?>
-                                            </div>
+                                                echo "</div><br/>";                
+
+                                                
+                                                }
+                                                echo "<input type='submit' name='Submit' value='Submit' /> ";
+                                                            echo "</form>"; 
+                                                ?>
+
+
+
+                                                
+
+                                          </div>
 
                                             
 
@@ -180,30 +270,11 @@ $form = ActiveForm::begin();
                                             
                                         </div>
                                         <div id="step-2">
-                                            <h2 class="StepTitle">Step 2 Content</h2>
-                                            
-                                            <?php
+                                           
 
-                                                    session_start();
 
-                                                    $db = mysql_connect("localhost","root","apoigaga123");
-                                                    mysql_select_db("tot",$db);
 
-                                                    $count = mysql_query("SELECT * FROM `question` ");
-                                                    $num_rows = mysql_num_rows($count);
-                                                    
-                                                    $rand = rand(3, $num_rows) - 3;
 
-                                                    $get = mysql_query("SELECT * FROM `question` WHERE `question_id` > '$rand' LIMIT 5");
-
-                                                    while($show = mysql_fetch_array($get)):
-                                                    
-
-                                                
-
-                                                    echo $show["question"]."<br>";
-                                                    endwhile;
-                                            ?>
                                         </div>
                                         <div id="step-3">
                                             <h2 class="StepTitle">Step 3 Content</h2>

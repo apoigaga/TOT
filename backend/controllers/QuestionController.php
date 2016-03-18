@@ -9,6 +9,10 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
+use yii\helpers\Html;
+use backend\models\Answer;
+use yii\helpers\ArrayHelper;
+
 
 
 
@@ -17,23 +21,6 @@ use yii\db\Query;
  */
 class QuestionController extends Controller
 {
-
-
-     public function radioList ($items, $options = [])
-                {
-                    $this->adjustLabelFor($Options);
-                    $this->parts['{input}'] = Html::activeRadioList($this->model,$this->attribute,$items,$options);
-
-                    
-
-                    return $this->render('soalan', [
-            'soalan' => $data,
-            
-        ]);
-
-
-                }
-       
 
 
 
@@ -79,53 +66,40 @@ class QuestionController extends Controller
      public function actionSoalan()
     {
         $query = new Query;
-        $query  ->select(['question.question_id AS id','question.question AS soalan'])  
-                ->from('question')
-                ;
+        $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                ->from('question');
            
         $command = $query->createCommand();
-        $data = $command->queryAll();
-        
-        // $singleSQL = new Query;
-        // $singleSQL ->select (['question.question_id','question.question AS qs', 'answer.answer AS ans'])
-        //            ->from('question', 'answer')
-        //            ->innerJoin('answer', 'answer.question_id = question.question_id')
-        //            ->where('answer.question_id = question.question_id')
-        //            ->all();
+        $data = $command->queryAll(); 
 
-        // $command1 = $singleSQL->createCommand();
-        // $data1 = $command1->queryAll();
-
-
-                                    
-
-        // while($row = mysql_fetch_array($singleSQL))
-        // {
-        //     $id = $row['question_id'];
-        //     $thisQuestion = $row['question'];
-        //     $q = '<h2>'.$thisQuestion.'</h2>';
-            
-        //     $sql2 = mysql_query("SELECT * FROM answer WHERE question_id = '$question' ");
-        //     while ($row2 = mysql_fetch_array($sql2)) 
-        //     {   
-        //         $answer = $row2['answer'];
-        //         $correct = $row2['correct'];
-        //         $answers .= '<label style="cursor:pointer;"><input type="radio" name="rads" value="'.$correct.'">'.$answer.'</label>
-        //         <input type="hidden" id="gid" value="'.$id.'" name="gid"><br /><br />';
-                
-        //     }
-        //     $output = ''.$q.','.$answers.',<span id="btnSpan"><button onclick="">Submit</button></span>';
-        // }
+        $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
 
         return $this->render('soalan', [
             'soalan' => $data,
             
-        ]);
+            'items' => $items,
+            
+        ]);       
 
-
-           
-        
+  
     }
+
+    public function actionSoalanSeterusnya()
+    {
+        $model = new Question();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->question_id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+
+  
+    }
+
+    
 
 
 
@@ -138,7 +112,10 @@ class QuestionController extends Controller
     {
         $model = new Question();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->question_id]);
         } else {
             return $this->render('create', [

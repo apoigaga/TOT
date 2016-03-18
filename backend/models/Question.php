@@ -26,7 +26,7 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['question'], 'required'],
+            [['question', 'code'], 'required'],
             [['question'], 'string', 'max' => 500]
         ];
     }
@@ -39,6 +39,7 @@ class Question extends \yii\db\ActiveRecord
         return [
             'question_id' => 'Question ID',
             'question' => 'Question',
+            'code' => 'Question Code',
         ];
     }
 

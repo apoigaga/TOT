@@ -62,8 +62,11 @@ class TrainerAnswerController extends Controller
     {
         $model = new TrainerAnswer();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->trainerAnswer_id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            echo $model->jawapanq1;
+
+            // return $this->redirect(['view', 'id' => $model->trainerAnswer_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
