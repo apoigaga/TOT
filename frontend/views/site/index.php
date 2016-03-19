@@ -1,31 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
 <?php
 
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+$this->title = 'Training of Trainers';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-    
-        <style>
-            .jumbotron { 
-            background-color: #ff3399; /* Orange */
-            color: #ffffff;
-            }
-        </style>
 
-        <h1>Training of Trainers!</h1>
+ <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
 
-        <p class="lead">It's not what you teach but how you teach it.</p>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="intro-message">
+                        <h1>Training of Trainers!</h1>
+                        <h3>It's not what you teach but how you teach it.</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <?= Html::a('Login', ['site/login/'], ['class'=>'btn btn-success']) ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <!-- /.container -->
 
-        <p>
-            <?= Html::a('Register Trainer', ['trainer/create/'], ['class'=>'btn btn-success']) ?>
-
-        </p>
     </div>
+    <!-- /.intro-header -->
+
 
     <div class="body-content">
 
