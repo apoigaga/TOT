@@ -26,7 +26,7 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['question'], 'required'],
+            [['question', 'code'], 'required'],
             [['question'], 'string', 'max' => 500]
         ];
     }
@@ -39,6 +39,7 @@ class Question extends \yii\db\ActiveRecord
         return [
             'question_id' => 'Question ID',
             'question' => 'Question',
+            'code' => 'Question Code',
         ];
     }
 
@@ -55,6 +56,11 @@ class Question extends \yii\db\ActiveRecord
     public function getwrongAnswer()
     {
         return $this->hasMany(wrongAnswer::classname(),['wrongAnswer_id'=> 'wrongAnswer_id']);
+    }
+
+    public function getAnswer()
+    {
+        return $this->hasMany(Answer::classname(),['answer_id'=> 'answer_id']);
     }
 
 

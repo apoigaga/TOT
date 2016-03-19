@@ -3,27 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Question;
-use backend\models\QuestionSearch;
+use backend\models\Answer;
+use backend\models\AnswerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\Query;
-use yii\helpers\Html;
-use backend\models\Answer;
-use yii\helpers\ArrayHelper;
-
-
-
 
 /**
- * QuestionController implements the CRUD actions for Question model.
+ * AnswerController implements the CRUD actions for Answer model.
  */
-class QuestionController extends Controller
+class AnswerController extends Controller
 {
-
-
-
     public function behaviors()
     {
         return [
@@ -37,12 +27,12 @@ class QuestionController extends Controller
     }
 
     /**
-     * Lists all Question models.
+     * Lists all Answer models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new QuestionSearch();
+        $searchModel = new AnswerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +42,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Displays a single Question model.
+     * Displays a single Answer model.
      * @param integer $id
      * @return mixed
      */
@@ -63,60 +53,17 @@ class QuestionController extends Controller
         ]);
     }
 
-     public function actionSoalan()
-    {
-        $query = new Query;
-        $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                ->from('question');
-           
-        $command = $query->createCommand();
-        $data = $command->queryAll(); 
-
-        $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
-
-        return $this->render('soalan', [
-            'soalan' => $data,
-            
-            'items' => $items,
-            
-        ]);       
-
-  
-    }
-
-    public function actionSoalanSeterusnya()
-    {
-        $model = new Question();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->question_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-
-  
-    }
-
-    
-
-
-
     /**
-     * Creates a new Question model.
+     * Creates a new Answer model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Question();
+        $model = new Answer();
 
-        if ($model->load(Yii::$app->request->post())) {
-            
-
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->question_id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->answer_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -125,7 +72,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Updates an existing Question model.
+     * Updates an existing Answer model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -135,7 +82,7 @@ class QuestionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->question_id]);
+            return $this->redirect(['view', 'id' => $model->answer_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -144,7 +91,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Deletes an existing Question model.
+     * Deletes an existing Answer model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -157,18 +104,19 @@ class QuestionController extends Controller
     }
 
     /**
-     * Finds the Question model based on its primary key value.
+     * Finds the Answer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Question the loaded model
+     * @return Answer the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Question::findOne($id)) !== null) {
+        if (($model = Answer::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

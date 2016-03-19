@@ -21,6 +21,17 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/bootstrap.min.js',
+        'js/custom.js',
+        // 'js/jquery.min.js',
+        'js/moment.min.js',
+        'js/moment.min2.js',
+        'js/nprogress.js',
+        'js/wizard/jquery.smartWizard.js',
+        'js/chartjs/chart.min.js',
+        'js/icheck/icheck.min.js',
+        'js/nicescroll/jquery.nicescroll.min.js',
+        'js/progressbar/bootstrap-progressbar.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
