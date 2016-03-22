@@ -3,6 +3,8 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use backend\models\TrainerAnswer;
+use yii\db\Query;
 
 $this->title = 'Home';
 ?>
@@ -22,7 +24,14 @@ $this->title = 'Home';
 
                                         <p class="lead">This exam will require you to answer 100 question within 90 minutes</p>
                                          <p class="lead">Goodluck</p>
+                                         <?php 
+                                       
+                                        ?>
+
                                         <?= Html::a('START EXAM', ['/question/soalan'], ['class'=>'btn btn-info']) ?><br><br><br><br><br><br><br>
+                                        <?php 
+                                        
+                                        ?>
                                     </div>
 
                                 </div>

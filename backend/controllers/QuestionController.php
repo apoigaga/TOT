@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Html;
 use backend\models\Answer;
+use backend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
 
 
@@ -83,23 +84,6 @@ class QuestionController extends Controller
 
   
     }
-
-    public function actionSoalanSeterusnya()
-    {
-        $model = new Question();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->question_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-
-  
-    }
-
-    
 
 
 

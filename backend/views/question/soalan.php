@@ -219,8 +219,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
-                                                <?php 
-                                                echo "<form action='".Url::to('index.php/trainer-answer/create')."' method='post'>";
+                                                 
+                                                <?php $form = ActiveForm::begin([
+                                                    'action' => '/TOT/backend/web/index.php?r=trainer-answer/soalan-seterusnya'
+
+                                                    ]);
+                                                $number = 1;
 
                                                 foreach ($soalan as $row) {
                                                 echo "<div>";
@@ -230,6 +234,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     // echo $row['correct']."<br/>";
 
                                                     $soalan_id = $row['id'];
+                                                    echo "<input type='hidden' value='".$soalan_id."' name='question_id[".$number."]'>";
                                                     $query = new Query;
                                                     $query -> select(['answer.answer as answer','answer.answer_id as answerid'])
                                                            -> from('question','answer')
@@ -244,18 +249,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                                            foreach ($xData as $ans) 
                                                            {
                                                             echo "<font size='3'>";
-                                                            echo "<input type='radio' name='jawapan".$row['qcode']."' value='".$ans['answerid']."'>".$ans['answer']."<br/>";
+                                                            echo "<input type='radio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."'>".$ans['answer']."<br/>";
                                                             echo "</font>";
                                                             
+
                                                             } 
                                                                                                           
                                                   
                                                 echo "</div><br/>";                
-
+                                                $number++;
                                                 
                                                 }
                                                 echo "<input type='submit' name='Submit' value='Submit' /> ";
-                                                            echo "</form>"; 
+                                                 ActiveForm::end();           
                                                 ?>
 
 
@@ -419,15 +425,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('#wizard').smartWizard('showMessage', 'Finish Clicked');
                 //alert('Finish Clicked');
             }
-        });
-
-        $(document).ready(function () {
-            // Smart Wizard 
             $('#wizard_verticle').smartWizard({
                 transitionEffect: 'slide'
             });
 
+
+            // $('body').on('beforeSubmit', '#formsoalan', function () {
+            //      var form = $(this);
+            //      // return false if form still have some validation errors
+            //      if (form.find('.has-error').length) {
+            //           return false;
+            //      }
+            //      // submit form
+            //      $.ajax({
+            //           url: form.attr('soalan-seterusnya'),
+            //           type: 'post',
+            //           data: form.serialize(),
+            //           success: function (response) {
+            //                // do something with response
+            //           }
+            //      });
+            //      return false;
+            // });
         });
+
+
     </script>
 
 </body>
