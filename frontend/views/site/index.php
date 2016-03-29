@@ -35,15 +35,13 @@ $this->title = 'Training of Trainers';
                 <div class="col-md-8">
                     <div class="intro-message">
                         <h1>Training of Trainers!</h1>
-                        <h3>It's not what you teach but how you teach it.</h3>
+                        <h2>It's not what you teach but how you teach it.</h2>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li>
-                                <?= Html::a('Login', ['site/login/'], ['class'=>'btn btn-success']) ?>
-                            </li>
                         </ul>
                     </div>
                 </div>
+
         </div>
         <!-- /.container -->
 

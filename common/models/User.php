@@ -26,6 +26,9 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    public $Administrator = 1;
+    public $Member = 2;
+
     /**
      * @inheritdoc
      */
@@ -52,6 +55,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+
         ];
     }
 
@@ -72,14 +76,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Finds user by ic_number
      *
-     * @param string $username
+     * @param string $ic_number
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByIcNumber($ic_number)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['ic_number' => $ic_number, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

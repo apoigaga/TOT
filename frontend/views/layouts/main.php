@@ -28,21 +28,28 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'TOT',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Home', 'url' => Yii::$app->homeUrl],
+        ['label' => 'Start Exam', 'url' => ['/site/about']],
+         ['label' => 'Profile', 'url' => ['/trainer/create']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
+        //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        $menuItems = [
+        ['label' => 'Login', 'url' => ['/site/login']],
+        ['label' => '', 'url' => ['/trainer/create']],
+
+
+
+        ];
+    } 
+    else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
