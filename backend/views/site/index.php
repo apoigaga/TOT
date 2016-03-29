@@ -3,8 +3,11 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use backend\models\TrainerAnswer;
+use yii\db\Query;
 
 $this->title = 'Home';
+
 ?>
 <body class="nav-md">
 
@@ -22,7 +25,27 @@ $this->title = 'Home';
 
                                         <p class="lead">This exam will require you to answer 100 question within 90 minutes</p>
                                          <p class="lead">Goodluck</p>
-                                        <?= Html::a('START EXAM', ['/question/soalan'], ['class'=>'btn btn-info']) ?><br><br><br><br><br><br><br>
+                                         <?php 
+                                                    $currentTime = date("Y-m-d h:i:s");
+                                                    $val2 = '2018-03-18 10:36:09';
+
+                                                    $datetime1 = new DateTime($currentTime);
+                                                    $datetime2 = new DateTime($val2);
+                                                    // echo "<pre>";
+                                                    // var_dump($datetime1->diff($datetime2));
+                                                    // echo date("Y-m-d h:i:s");
+                                        ?>
+
+                                                    <?php if($datetime1 > $datetime2){ ?>
+
+                                                    <h1>Time expired</h1>
+
+                                                    <?php }else{ ?>
+
+                                                        <?= Html::a('START EXAM', ['/question/soalan'], ['class'=>'btn btn-info']) ?><br><br><br><br><br><br><br>
+                                        
+                                                    <?php } ?>
+                                        
                                     </div>
 
                                 </div>

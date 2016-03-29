@@ -4,8 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "649c3992d545f443fd6b41447b6d9bea",
     "content-hash": "f10d532f194d3d5fd0c4f64c728da11d",
+=======
+    "hash": "7f73f1d8576964ee457482d5f9e84a76",
+    "content-hash": "c93a60278de0d06aadc89060a1e1ecba",
+>>>>>>> 8785d848084621eb5e1a4ed0987f8e3e0755692b
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -346,6 +351,7 @@
             "time": "2016-01-10 12:26:29"
         },
         {
+<<<<<<< HEAD
             "name": "kartik-v/yii2-widget-datepicker",
             "version": "dev-master",
             "source": {
@@ -371,11 +377,37 @@
             "autoload": {
                 "psr-4": {
                     "kartik\\date\\": ""
+=======
+            "name": "kartik-v/yii2-widget-alert",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-alert.git",
+                "reference": "5b312eeaf429c2affe6a96217d79f0c761159643"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-alert/zipball/5b312eeaf429c2affe6a96217d79f0c761159643",
+                "reference": "5b312eeaf429c2affe6a96217d79f0c761159643",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\alert\\": ""
+>>>>>>> 8785d848084621eb5e1a4ed0987f8e3e0755692b
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
+<<<<<<< HEAD
                 "BSD-3-Clause"
+=======
+                "BSD 3-Clause"
+>>>>>>> 8785d848084621eb5e1a4ed0987f8e3e0755692b
             ],
             "authors": [
                 {
@@ -384,6 +416,7 @@
                     "homepage": "http://www.krajee.com/"
                 }
             ],
+<<<<<<< HEAD
             "description": "Enhanced Yii2 wrapper for the bootstrap datepicker plugin (sub repo split from yii2-widgets).",
             "homepage": "https://github.com/kartik-v/yii2-widget-datepicker",
             "keywords": [
@@ -398,6 +431,23 @@
                 "yii2"
             ],
             "time": "2016-03-25 08:49:17"
+=======
+            "description": "A widget to generate alert based notifications using bootstrap-alert plugin (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-alert",
+            "keywords": [
+                "alert",
+                "block",
+                "bootstrap",
+                "extension",
+                "flash",
+                "jquery",
+                "notification",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-11-19 06:44:12"
+>>>>>>> 8785d848084621eb5e1a4ed0987f8e3e0755692b
         },
         {
             "name": "swiftmailer/swiftmailer",

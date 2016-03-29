@@ -8,6 +8,10 @@ use backend\models\TrainerAnswerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
+use yii\db\Command;
+use yii\helpers\ArrayHelper;
+use backend\models\Answer;
 
 /**
  * TrainerAnswerController implements the CRUD actions for TrainerAnswer model.
@@ -73,6 +77,9 @@ class TrainerAnswerController extends Controller
             ]);
         }
     }
+
+
+    
 
     /**
      * Updates an existing TrainerAnswer model.

@@ -11,7 +11,10 @@ use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Html;
 use backend\models\Answer;
+use backend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
+
+
 
 
 
@@ -63,20 +66,23 @@ class QuestionController extends Controller
         ]);
     }
 
-     public function actionSoalan()
+    public function actionSoalan()
     {
+        //****************please change total number of question at limit()***************
         $query = new Query;
         $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                ->from('question');
+                ->from('question')
+                ->orderBy('section, rand()')
+                ->limit(5);
+        //********************************************************************************
            
         $command = $query->createCommand();
         $data = $command->queryAll(); 
 
         $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
-
+        
         return $this->render('soalan', [
             'soalan' => $data,
-            
             'items' => $items,
             
         ]);       
@@ -84,22 +90,109 @@ class QuestionController extends Controller
   
     }
 
+
     public function actionSoalanSeterusnya()
     {
-        $model = new Question();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->question_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+     if(isset($_POST['question_id']) && isset($_POST['trainerAnswer']))
+     {
+        
+        //*****************************view all questions*******************//
+        if ($_POST['question_id']!=0) {
+
+            $trainer_id = Yii::$app->user->identity->id;
+
+            $query1 = new Query;
+            $query1 -> select(['registered_question as regQ'])
+                   -> from('trainerAnswer')
+                   -> where('trainer_id = "'.$trainer_id.'"')
+                   -> all();
+            $command1 = $query1->createCommand();
+            $totquestion1= $command1->queryAll();
+
+            
+//****************kalau user dah jawab semua soalan*********************//
+            if(!empty($totquestion1)){
+
+                foreach ($_POST['question_id'] as $key => $value) {
+                    $question =$_POST['question_id'][$key];
+                    $answer = $_POST['trainerAnswer'][$key];
+                    $connection= Yii::$app->db;
+                    $connection->createCommand("UPDATE
+                                        trainerAnswer 
+                                        SET 
+                                        trainerAnswer_answer = '".$answer."' ,
+                                        trainer_id = '".$trainer_id."'
+                                        WHERE  
+                                        question_id = '".$question."'
+                                        ")->execute();
+                }
+                
+
+            }elseif(empty($totquestion1)){
+
+                $query = new Query;
+                $query -> select(['count(question_id) as tot'])
+                       -> from('question')
+                       -> all();
+                $command = $query->createCommand();
+                $totquestion = $command->queryAll();
+                $num = $totquestion[0]['tot'];
+
+                for($i=1; $i <= $num; $i++){
+                    $connection= Yii::$app->db;
+                    $connection->createCommand("INSERT INTO 
+                                                trainerAnswer (registered_question, question_id) 
+                                                VALUES 
+                                                (:registered_question, :question_id)",[
+                                                ":registered_question" => $i,
+                                                ":question_id" => $i,
+                                                ]
+                                              )->execute();
+
+                }
+                foreach ($_POST['question_id'] as $key => $value) {
+                    $question =$_POST['question_id'][$key];
+                    $answer = $_POST['trainerAnswer'][$key];
+                    $connection= Yii::$app->db;
+                    $connection->createCommand("UPDATE
+                                        trainerAnswer 
+                                        SET 
+                                        trainerAnswer_answer = '".$answer."' ,
+                                        trainer_id = '".$trainer_id."'
+                                        WHERE  
+                                        question_id = '".$question."'
+                                        ")->execute();
+                }
+            }
+            $query = new Query;
+            //****************please change total number of question at limit()***************
+            $query  ->select(['q.question_id AS id','q.question AS soalan','q.code AS qcode'])  
+                    ->from('trainerAnswer t, question q')
+                    ->where('t.registered_question = q.question_id and t.trainerAnswer_answer is null')
+                    ->orderBy('section, rand()')
+                    ->limit(5);   
+            //********************************************************************************        
+            $command = $query->createCommand();
+            $data = $command->queryAll(); 
+            $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
+
+                return $this->render('soalan', [
+                    'soalan' => $data,
+                    'items' => $items,
+                    
+                        
+                ]);   
         }
-
   
     }
-
+    $back = Yii::$app->request->referrer;
+       echo "<script>
+       confirm('Please answer all questions')
+       window.location.href='$back';
+       </script>";
     
+}
 
 
 
