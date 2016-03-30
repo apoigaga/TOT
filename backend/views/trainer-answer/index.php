@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'trainer_id',
             'question_id',
             'mark_id',
+            'registered_question',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

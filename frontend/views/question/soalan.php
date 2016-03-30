@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\db\Query;
 use yii\widgets\ActiveForm;
-use backend\models\Answer;
+use frontend\models\Answer;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use kartik\widgets\Alert;
@@ -100,7 +100,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                                     <?php $form = ActiveForm::begin([
-                                        'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
+                                        'action' => '/TOT/frontend/web/index.php?r=question/soalan-seterusnya'
 
                                         ]);
                                     $number = 1;
@@ -183,51 +183,8 @@ $total_markah111 = $totmarkah[0]['totmark'];
                         </div>
         </div>
     </div>
-
-  <script>
-    function countDown(secs,elem) {
-    var element = document.getElementById(elem);
-    element.innerHTML = "Please wait for "+secs+" seconds";
-    if(secs < 1) 
-    {
-        clearTimeout(timer);
-        element.innerHTML = '<h2>Countdown Complete!</h2>';
-        //element.innerHTML += '<a href="/TOT/backend/web/index.php?r=question%2Fmark" data-method="post">Click here now</a>';
-        window.location.href = "/TOT/backend/web/index.php?r=question%2Fmark";
-    }
-
-    secs--;
-    var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
-    }
-    </script>
-
-    <div id="status"></div>
-    
-    <?php
-
-    $currentTime = date("Y-m-d h:i:s");
-    $strStart = '2013-06-19 18:00'; 
-    $strEnd   = '2013-06-19 19:40';
-
-    $dteStart = new DateTime($strStart); 
-    $dteEnd   = new DateTime($strEnd);
-
-    $dteDiff  = $dteStart->diff($dteEnd);
-    $dteDiffSeconds = $dteDiff->format("%I");
-    echo "<script>countDown($dteDiffSeconds,'status');</script>"
-
-    ?>
-             
-        <!-- footer content -->
-    <footer>
-        <div class="">
-            <p class="pull-right">Apoigaga <a></a>. |
-                <span class="lead"> <i class="fa fa-paw"></i> CBIC</span>
-            </p>
-        </div>
-        <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->    
+                
+         
 
 </body>
 

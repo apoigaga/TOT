@@ -40,6 +40,7 @@ class Question extends \yii\db\ActiveRecord
             'question_id' => 'Question ID',
             'question' => 'Question',
             'code' => 'Question Code',
+            'section' => 'Section',
         ];
     }
 

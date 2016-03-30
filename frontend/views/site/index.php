@@ -3,33 +3,57 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use backend\models\TrainerAnswer;
+use yii\db\Query;
 
-$this->title = 'My Yii Application';
+$this->title = 'Home';
+
 ?>
-<div class="site-index">
+<body class="nav-md">
 
-    <div class="jumbotron">
-    
-        <style>
-            .jumbotron { 
-            background-color: #ff3399; /* Orange */
-            color: #ffffff;
-            }
-        </style>
+    <div class="container body">
+        <div class="main_container">
+            <div class="main_container">
+                <div class="clearfix"></div>
+                    <div class="row">
+                         <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                               <div class="x_content">
 
-        <h1>Training of Trainers!</h1>
+                                    <div class="jumbotron">
+                                        <h1>Training for trainer!</h1>
 
-        <p class="lead">It's not what you teach but how you teach it.</p>
+                                        <p class="lead">This exam will require you to answer 100 question within 90 minutes</p>
+                                         <p class="lead">Goodluck</p>
+                                         <?php 
+                                                    $currentTime = date("Y-m-d h:i:s");
+                                                    $val2 = '2018-03-18 10:36:09';
 
-        <p>
-            <?= Html::a('Register Trainer', ['trainer/create/'], ['class'=>'btn btn-success']) ?>
+                                                    $datetime1 = new DateTime($currentTime);
+                                                    $datetime2 = new DateTime($val2);
+                                                    // echo "<pre>";
+                                                    // var_dump($datetime1->diff($datetime2));
+                                                    // echo date("Y-m-d h:i:s");
+                                        ?>
 
-        </p>
+                                                    <?php if($datetime1 > $datetime2){ ?>
+
+                                                    <h1>Time expired</h1>
+
+                                                    <?php }else{ ?>
+
+                                                        <?= Html::a('START EXAM', ['/question/soalan'], ['class'=>'btn btn-info']) ?><br><br><br><br><br><br><br>
+                                        
+                                                    <?php } ?>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="body-content">
-
-       
-
-    </div>
-</div>
+</body>

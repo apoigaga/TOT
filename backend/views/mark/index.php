@@ -10,28 +10,56 @@ use yii\grid\GridView;
 $this->title = 'Marks';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mark-index">
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">       
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="mark-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    <h1><?= Html::encode($this->title) ?></h1>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Mark', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+                    <p>
+                        <?= Html::a('Create Mark', ['create'], ['class' => 'btn btn-success']) ?>
+                    </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    <?= GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
 
-            'mark_id',
-            'mark_total',
-            'trainer_id',
-            'trainerAnswer_id',
+                            'mark_id',
+                            'mark_total',
+                            'trainer_id',
+                            'trainerAnswer_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                            ['class' => 'yii\grid\ActionColumn'],
+                        ],
+                    ]); ?>
 
-</div>
+                </div>
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+                
+                <!-- footer content -->
+            <footer>
+                <div class="">
+                    <p class="pull-right">Apoigaga <a></a>. |
+                        <span class="lead"> <i class="fa fa-paw"></i> CBIC</span>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->    
+
+
+            
+
+</body>

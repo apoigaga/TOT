@@ -1,8 +1,9 @@
 <?php
 
-namespace frontend\models;
+namespace backend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "trainerAnswer".
@@ -30,7 +31,7 @@ class TrainerAnswer extends \yii\db\ActiveRecord
     {
         return [
             [['trainerAnswer_answer', 'trainer_id', 'question_id', 'mark_id'], 'required'],
-            [['trainerAnswer_answer', 'trainer_id', 'question_id', 'mark_id'], 'string', 'max' => 50]
+            [['trainerAnswer_answer', 'trainer_id', 'question_id', 'mark_id'], 'string', 'max' => 50] 
         ];
     }
 
@@ -45,6 +46,25 @@ class TrainerAnswer extends \yii\db\ActiveRecord
             'trainer_id' => 'Trainer ID',
             'question_id' => 'Question ID',
             'mark_id' => 'Mark ID',
+            'registered_question' => 'Registered Question',
         ];
     }
+
+    public function getTrainer()
+    {
+        return $this->hasOne(Trainer::classname(),['trainer_id'=> 'trainer_id']);
+    }
+
+    public function getMark()
+    {
+        return $this->hasOne(Mark::classname(),['mark_id'=> 'mark_id']);
+    }
+
+    public function getQuestion()
+    {
+        return $this->hasOne(Question::classname(),['question_id'=> 'question_id']);
+    }
+
+
+
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use backend\models\Question;
-use backend\models\QuestionSearch;
+use frontend\models\Question;
+use frontend\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Html;
-use backend\models\Answer;
-use backend\models\trainerAnswer;
+use frontend\models\Answer;
+use frontend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
 
 
@@ -65,8 +65,6 @@ class QuestionController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
-
 
     public function actionSoalan()
     {
@@ -265,11 +263,5 @@ class QuestionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-
-    public function actionMark()
-    {
-        return $this->render('mark');
     }
 }

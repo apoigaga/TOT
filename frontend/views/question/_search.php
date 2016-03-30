@@ -4,28 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\TrainerAnswerSearch */
+/* @var $model backend\models\QuestionSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="trainer-answer-search">
+<div class="question-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'trainerAnswer_id') ?>
-
-    <?= $form->field($model, 'trainerAnswer_answer') ?>
-
-    <?= $form->field($model, 'trainer_id') ?>
-
     <?= $form->field($model, 'question_id') ?>
 
-    <?= $form->field($model, 'mark_id') ?>
-
-    <?= $form->field($model, 'registered_question') ?>
+    <?= $form->field($model, 'question') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

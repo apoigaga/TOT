@@ -10,12 +10,40 @@ $this->title = 'Create Answer';
 $this->params['breadcrumbs'][] = ['label' => 'Answers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="answer-create">
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">       
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="answer-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                    ]) ?>
 
-</div>
+                </div>
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+                
+                <!-- footer content -->
+            <footer>
+                <div class="">
+                    <p class="pull-right">Apoigaga <a></a>. |
+                        <span class="lead"> <i class="fa fa-paw"></i> CBIC</span>
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->    
+
+
+            
+
+</body>
