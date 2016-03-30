@@ -112,10 +112,34 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
+
         if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionChangePassword()
+    {
+
+        $model=$this->findModel(Yii::$app->user->id);
+        $model->scenario = 'change';
+
+        if(isset($_POST['User']))
+        {
+            $model->attributes = $_POST['User'];
+            $user = User::findOne(Yii::$app->user->id);
+           
+            $model->password_hash = md5($model->new_pass.$model->new_pass);
+            if($model->save())
+                return $this->redirect(['/site/index']);
+        }
+
+        return $this->render('changepassword', [
+                'model' => $model,
+            ]);
+
+
     }
 }

@@ -52,16 +52,16 @@ class Trainer extends \yii\db\ActiveRecord
     {
         return [
             'trainer_id' => 'Trainer ID',
-            'trainer_name' => 'Trainer Name',
-            'trainer_icNO' => 'Trainer Ic No',
-            'trainer_address' => 'Trainer Address',
-            'trainer_phoneNO' => 'Trainer Phone No',
-            'trainer_email' => 'Trainer Email',
-            'trainer_race' => 'Trainer Race',
-            'trainer_maritialStatus' => 'Trainer Maritial Status',
-            'trainer_highestQualification' => 'Trainer Highest Qualification',
-            'trainer_occupation' => 'Trainer Occupation',
-            'trainer_dateOfTraining' => 'Trainer Date Of Training',
+            'trainer_name' => 'Name',
+            'trainer_icNO' => 'Ic No',
+            'trainer_address' => 'Address',
+            'trainer_phoneNO' => 'Phone No',
+            'trainer_email' => 'Email',
+            'trainer_race' => 'Race',
+            'trainer_maritialStatus' => 'Maritial Status',
+            'trainer_highestQualification' => 'Highest Qualification',
+            'trainer_occupation' => 'Occupation',
+            'trainer_dateOfTraining' => 'Date Of Training',
         ];
     }
 }
