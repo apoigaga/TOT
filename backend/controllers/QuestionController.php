@@ -24,10 +24,7 @@ use yii\helpers\ArrayHelper;
  */
 class QuestionController extends Controller
 {
-
-
-
-    public function behaviors()
+ public function behaviors()
     {
         return [
             'verbs' => [
@@ -70,24 +67,55 @@ class QuestionController extends Controller
 
     public function actionSoalan()
     {
-        //****************please change total number of question at limit()***************
-        $query = new Query;
-        $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                ->from('question')
-                ->orderBy('section, rand()')
-                ->limit(5);
-        //********************************************************************************
-           
-        $command = $query->createCommand();
-        $data = $command->queryAll(); 
+        $trainer_id = Yii::$app->user->identity->id; 
 
-        $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
-        
-        return $this->render('soalan', [
-            'soalan' => $data,
-            'items' => $items,
+        $query = new Query;
+        $query -> select(['count(question_id) as tot'])
+               -> from('question')
+               -> all();
+        $command = $query->createCommand();
+        $totquestion = $command->queryAll();
+        $num = $totquestion[0]['tot'];
+
+        $querytot = new Query;
+        $querytot -> select(['count(trainerAnswer_answer) as totAnswer'])
+                  -> from('trainerAnswer')
+                  -> where('trainer_id = "'.$trainer_id.'" ')
+                  -> all();
+        $commandtot = $querytot->createCommand();
+        $answer_tot = $commandtot->queryAll();
+        $answertot = $answer_tot[0]['totAnswer'];
+
+        if( $answertot >= $num){
+
+            $back = Yii::$app->request->referrer;
+               echo "<script>
+               confirm('You Had answered all questions')
+               window.location.href='$back';
+               </script>";
+
+
+        }
+        else{
+            //****************please change total number of question at limit()***************
+            $query = new Query;
+            $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                    ->from('question')
+                    ->orderBy('section, rand()')
+                    ->limit(5);
+            //********************************************************************************
+               
+            $command = $query->createCommand();
+            $data = $command->queryAll(); 
+
+            $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
             
-        ]);       
+            return $this->render('soalan', [
+                'soalan' => $data,
+                'items' => $items,
+                
+            ]);   
+        }    
 
   
     }

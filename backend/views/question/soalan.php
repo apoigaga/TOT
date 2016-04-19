@@ -50,6 +50,15 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 ?>
 
+<body onload=display_ct();>
+<p>current time
+<span id='ct' ></span></p>
+
+<p>end time
+<span id='et' ></span></p>
+
+<p>bal time
+<span id='bt' ></span></p>
 
 
 <!DOCTYPE html>
@@ -90,6 +99,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                             }else{
                                 echo "<center><h1>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h1></center>";
+
 
                                 
                             }
@@ -184,50 +194,60 @@ $total_markah111 = $totmarkah[0]['totmark'];
         </div>
     </div>
 
-  <script>
-    function countDown(secs,elem) {
-    var element = document.getElementById(elem);
-    element.innerHTML = "Please wait for "+secs+" seconds";
-    if(secs < 1) 
-    {
-        clearTimeout(timer);
-        element.innerHTML = '<h2>Countdown Complete!</h2>';
-        //element.innerHTML += '<a href="/TOT/backend/web/index.php?r=question%2Fmark" data-method="post">Click here now</a>';
-        window.location.href = "/TOT/backend/web/index.php?r=question%2Fmark";
-    }
+    <?php 
 
-    secs--;
-    var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
-    }
-    </script>
+    $queryT = new Query;
+    $queryT -> select(['exam_end'])
+            -> from('examTime')
+            -> all(); 
 
-    <div id="status"></div>
-    
-    <?php
+    $commandT = $queryT->createCommand();
+    $time = $commandT->queryAll();
+    $dataT = $time[0]['exam_end'];
 
-    $currentTime = date("Y-m-d h:i:s");
-    $strStart = '2013-06-19 18:00'; 
-    $strEnd   = '2013-06-19 19:40';
 
-    $dteStart = new DateTime($strStart); 
-    $dteEnd   = new DateTime($strEnd);
 
-    $dteDiff  = $dteStart->diff($dteEnd);
-    $dteDiffSeconds = $dteDiff->format("%I");
-    echo "<script>countDown($dteDiffSeconds,'status');</script>"
+        echo $dataT;       
 
     ?>
+  
              
-        <!-- footer content -->
-    <footer>
-        <div class="">
-            <p class="pull-right">Apoigaga <a></a>. |
-                <span class="lead"> <i class="fa fa-paw"></i> CBIC</span>
-            </p>
-        </div>
-        <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->    
+    <script type="text/javascript"> 
+        function display_c(){
+        var refresh=1000; // Refresh rate in milli seconds
+        mytime=setTimeout('display_ct()',refresh)
+        }
+
+        function display_ct() {
+            var strcount
+            var x = new Date()
+            var x1=x.getHours( )+ ":" + x.getMinutes() + ":" + x.getSeconds();
+            var d = new Date("<?php echo $dataT ?>");
+            var x2=d.getHours( )+ ":" + d.getMinutes() + ":" + d.getSeconds();
+            document.getElementById('ct').innerHTML = x1;
+            document.getElementById('et').innerHTML = x2;
+
+            s = x1.split(':');
+            e = x2.split(':');
+            min = e[1]-s[1];
+            hour_carry = 0;
+            if(min < 0){
+                min += 60;
+                hour_carry += 1;
+            }
+            hour = e[1]-s[0]-hour_carry;
+            diff = hour;
+
+            if(diff < 0)
+            {
+                window.location.href = "/TOT/backend/web/index.php?r=question%2Fmark";
+            }
+
+
+            document.getElementById('bt').innerHTML = diff;
+            tt=display_c();
+    }
+    </script>
 
 </body>
 

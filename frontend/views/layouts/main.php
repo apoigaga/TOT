@@ -34,21 +34,21 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-<<<<<<< HEAD
+
     // $menuItems = [
     //     ['label' => 'Home', 'url' => ['/site/index']],
     //     ['label' => 'About', 'url' => ['/site/about']],
     //     ['label' => 'Contact', 'url' => ['/site/contact']],
     // ];
-=======
+
     $menuItems = [
         ['label' => 'Home', 'url' => Yii::$app->homeUrl],
         ['label' => 'Start Exam', 'url' => ['/site/about']],
          ['label' => 'Profile', 'url' => ['/trainer/create']],
     ];
->>>>>>> 9f6301637bc88c38e2b0e556b716f3a2bf8abaec
+
     if (Yii::$app->user->isGuest) {
-        //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
         ['label' => '', 'url' => ['/trainer/create']],

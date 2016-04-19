@@ -23,9 +23,9 @@ use yii\helpers\Html;
 use backend\models\TrainerAnswer;
 use yii\db\Query;
 
-<<<<<<< HEAD
+
 $this->title = 'Home';
-=======
+
 $this->title = 'Training of Trainers';
 ?>
 <div class="site-index">
@@ -57,7 +57,7 @@ $this->title = 'Training of Trainers';
     <div class="body-content">
 
        
->>>>>>> 9f6301637bc88c38e2b0e556b716f3a2bf8abaec
+
 
 ?>
 <body class="nav-md">

@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Mark;
+use backend\models\ExamTime;
 
 /**
- * MarkSearch represents the model behind the search form about `backend\models\Mark`.
+ * examTimeSearch represents the model behind the search form about `backend\models\ExamTime`.
  */
-class MarkSearch extends Mark
+class examTimeSearch extends ExamTime
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class MarkSearch extends Mark
     public function rules()
     {
         return [
-            [['mark_id', 'trainer_id', 'trainerAnswer_id'], 'integer'],
-            [['mark_total'], 'safe'],
+            [['examTime_id'], 'integer'],
+            [['exam_start', 'exam_end'], 'safe'],
         ];
     }
 
@@ -41,8 +41,9 @@ class MarkSearch extends Mark
      */
     public function search($params)
     {
-        $query = Mark::find();
-        
+        $query = ExamTime::find();
+
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,13 +57,12 @@ class MarkSearch extends Mark
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
-            'mark_id' => $this->mark_id,
-            'trainer_id' => $this->trainer_id,
-            'trainerAnswer_id' => $this->trainerAnswer_id,
+            'examTime_id' => $this->examTime_id,
+            'exam_start' => $this->exam_start,
+            'exam_end' => $this->exam_end,
         ]);
-
-        $query->andFilterWhere(['like', 'mark_total', $this->mark_total]);
 
         return $dataProvider;
     }
