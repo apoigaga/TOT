@@ -105,6 +105,12 @@ $total_markah111 = $totmarkah[0]['totmark'];
                             }
 
                             ?>
+                            <script>
+                            function myFunction() {
+                                var x = document.getElementById("myRadio").required;
+                                document.getElementById("demo").innerHTML = x;
+                            }
+                            </script>
                                  <div class="question-index">
                                     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
                                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -139,7 +145,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                {
                                                 echo "<font size='3'>";
                                                 echo "<ul>";
-                                                echo "<input type='radio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."'>".$ans['answer'];
+                                                echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];
                                                 echo "</ul>";
                                                 echo "</font>";
                                                 
@@ -219,8 +225,8 @@ $total_markah111 = $totmarkah[0]['totmark'];
         }
 
         function display_ct() {
-            var strcount
-            var x = new Date()
+            var strcount;
+            var x = new Date();
             var x1=x.getHours( )+ ":" + x.getMinutes() + ":" + x.getSeconds();
             var d = new Date("<?php echo $dataT ?>");
             var x2=d.getHours( )+ ":" + d.getMinutes() + ":" + d.getSeconds();
