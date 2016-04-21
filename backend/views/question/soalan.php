@@ -98,19 +98,14 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                 $this->title = 'Questions';
 
                             }else{
-                                echo "<center><h1>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h1></center>";
-
-
                                 
+                                 header("Location: /TOT/backend/web/index.php?r=question%2Fmark"); 
+                                exit();                                        
+
                             }
 
                             ?>
-                            <script>
-                            function myFunction() {
-                                var x = document.getElementById("myRadio").required;
-                                document.getElementById("demo").innerHTML = x;
-                            }
-                            </script>
+                            
                                  <div class="question-index">
                                     <!-- <h1><?= Html::encode($this->title) ?></h1> -->
                                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -135,6 +130,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                -> from('question','answer')
                                                -> innerJoin('answer','answer.question_id = question.question_id')
                                                ->where('answer.question_id = "'.$soalan_id.'" ')
+                                               ->orderBy(' rand()')
                                                ->all();
 
                                                $command = $query->createCommand();
@@ -183,13 +179,13 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                             ('".$total_markah111."', '".$trainer_id."') 
                                                             ")->execute();
 
-                                        echo "<div class='jumbotron' >";
+                                        // echo "<div class='jumbotron' >";
 
-                                        echo "<h2>You answered</h2>";
-                                        echo "<h1>".$total_markah111."/".$total_soalan."</h1>";
-                                        echo "<h2>Correct!</h2>";
+                                        // echo "<h2>You answered</h2>";
+                                        // echo "<h1>".$total_markah111."/".$total_soalan."</h1>";
+                                        // echo "<h2>Correct!</h2>";
 
-                                        echo "</div>";
+                                        // echo "</div>";
                                     }
                                      ActiveForm::end();
                                     ?>
@@ -253,8 +249,14 @@ $total_markah111 = $totmarkah[0]['totmark'];
             document.getElementById('bt').innerHTML = diff;
             tt=display_c();
     }
-    </script>
 
+    //******radio button required before proceed to the next page*****//
+    function myFunction() {
+        var x = document.getElementById("myRadio").required;
+        document.getElementById("demo").innerHTML = x;
+    }
+    </script>
+   
 </body>
 
 </html>

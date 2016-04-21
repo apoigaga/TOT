@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'question_id',
             'question',
             'code',
+            'section',
         ],
     ]) ?>
 

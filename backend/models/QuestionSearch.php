@@ -20,6 +20,7 @@ class QuestionSearch extends Question
         return [
             [['question_id'], 'integer'],
             [['question'], 'safe'],
+         
         ];
     }
 
