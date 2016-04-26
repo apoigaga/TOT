@@ -58,8 +58,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 <span id='et' ></span></p>
 
 <p>bal time
-<span id='bt' ></span></p>
-
+<span id='bt' ></span></p>                        
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +113,8 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                         'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
 
                                         ]);
-                                    $number = 1;
+
+                                    $number = $numbersoalan;
 
                                     foreach ($soalan as $row) {
                                     echo "<div>";
@@ -237,7 +237,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                 min += 60;
                 hour_carry += 1;
             }
-            hour = e[1]-s[0]-hour_carry;
+            hour = e[0]-s[0]-hour_carry;
             diff = hour;
 
             if(diff < 0)

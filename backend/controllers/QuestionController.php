@@ -109,11 +109,11 @@ class QuestionController extends Controller
             $data = $command->queryAll(); 
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
-            
+            $numbersoalan=1;
             return $this->render('soalan', [
                 'soalan' => $data,
                 'items' => $items,
-                
+                'numbersoalan' => $numbersoalan,
             ]);   
         }    
 
@@ -141,7 +141,7 @@ class QuestionController extends Controller
             $totquestion1= $command1->queryAll();
 
             
-//****************kalau user dah jawab semua soalan*********************//
+        //****************kalau user dah jawab semua soalan*********************//
             if(!empty($totquestion1)){
 
                 foreach ($_POST['question_id'] as $key => $value) {
@@ -151,10 +151,9 @@ class QuestionController extends Controller
                     $connection->createCommand("UPDATE
                                         trainerAnswer 
                                         SET 
-                                        trainerAnswer_answer = '".$answer."' ,
-                                        trainer_id = '".$trainer_id."'
-                                        WHERE  
-                                        question_id = '".$question."'
+                                        trainerAnswer_answer = '".$answer."' 
+                                        WHERE  question_id = '".$question."'
+                                        AND    trainer_id = '".$trainer_id."'
                                         ")->execute();
                 }
                 
@@ -172,11 +171,12 @@ class QuestionController extends Controller
                 for($i=1; $i <= $num; $i++){
                     $connection= Yii::$app->db;
                     $connection->createCommand("INSERT INTO 
-                                                trainerAnswer (registered_question, question_id) 
+                                                trainerAnswer (registered_question, question_id, trainer_id) 
                                                 VALUES 
-                                                (:registered_question, :question_id)",[
+                                                (:registered_question, :question_id, :trainer_id)",[
                                                 ":registered_question" => $i,
                                                 ":question_id" => $i,
+                                                ":trainer_id" => $trainer_id,
                                                 ]
                                               )->execute();
 
@@ -188,10 +188,9 @@ class QuestionController extends Controller
                     $connection->createCommand("UPDATE
                                         trainerAnswer 
                                         SET 
-                                        trainerAnswer_answer = '".$answer."' ,
-                                        trainer_id = '".$trainer_id."'
-                                        WHERE  
-                                        question_id = '".$question."'
+                                        trainerAnswer_answer = '".$answer."'
+                                        WHERE  question_id = '".$question."'
+                                        AND    trainer_id = '".$trainer_id."'
                                         ")->execute();
                 }
             }
@@ -207,10 +206,20 @@ class QuestionController extends Controller
             $data = $command->queryAll(); 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
 
+
+            $queryjawa = new Query;
+            $queryjawa -> select(['count(trainerAnswer_answer) as totjaw'])
+                    -> from('trainerAnswer')
+                    -> where('trainer_id = "'.$trainer_id.'"')
+                    -> all();
+            $commandjawa = $queryjawa->createCommand();
+            $totjawapan = $commandjawa->queryAll();
+            $total_jawapan = $totjawapan[0]['totjaw'];
+
                 return $this->render('soalan', [
                     'soalan' => $data,
                     'items' => $items,
-                    
+                    'numbersoalan' => $total_jawapan,
                         
                 ]);   
         }

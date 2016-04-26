@@ -9,7 +9,7 @@ use yii\db\Query;
 $this->title = 'Home';
 
 ?>
-<body class="nav-md">
+
 
     <div class="container body">
         <div class="main_container">
