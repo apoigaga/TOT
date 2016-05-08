@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace backend\controllers;
 
@@ -97,16 +97,27 @@ class QuestionController extends Controller
 
         }
         else{
-            //****************please change total number of question at limit()***************
-            $query = new Query;
-            $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                    ->from('question')
-                    ->orderBy('section, rand()')
-                    ->limit(5);
-            //********************************************************************************
-               
-            $command = $query->createCommand();
-            $data = $command->queryAll(); 
+            
+            $queryA = new Query;
+            $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "A"')
+                     ->limit(2);
+
+            $queryB = new Query;
+            $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "B"')
+                     ->limit(2);
+
+            $queryC = new Query;
+            $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "C"')
+                     ->limit(2);
+            
+            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->limit(4)->createCommand();
+            $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
             $numbersoalan=1;

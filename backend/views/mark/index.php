@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     // $dataT = $datau[0]['name'];
     // $datat = $datau[0]['id'];
 
+    // /********************total mark***************************/
     $querym = new Query;
     $querym -> select(['count(*) as totmark'])
             -> from('trainerAnswer t, answer a')
@@ -36,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $totmarkah = $commandm->queryAll();
     $total_markah111 = $totmarkah[0]['totmark'];
 
+    /**************total question***********************************/
     $querys = new Query;
     $querys -> select(['count(question_id) as totq'])
             -> from('question')
@@ -63,20 +65,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Trainer ID</th>
                         <th></th>
                         <th>Trainer Name</th>
-                        <th></th>
+                        <th>Correct Answer</th>
                         <th>Trainer Marks</th>
                     </tr>
                 </thead>
                 <tbody>
 
+                
+
                 <?php foreach ($datau as $row): ?>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row"><?=  $numbersoalan++; ?></th>
                         <td><?= $row['id'] ?></td>
                         <td></td>
                         <td><?= $row['name'] ?></td>
-                        <td></td>
-                        <td><?= $row['mark']/$total_soalan*100 ?></td>
+                        <td><?= $row['mark']."/".$total_soalan ?></td>
+                        <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td>
                     </tr>
                     <?php endforeach; ?>
                     

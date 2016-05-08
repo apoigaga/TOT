@@ -49,31 +49,14 @@ echo "<div class='jumbotron' >";
                 echo "<h1>FAIL!</h1>";
 
 
-            }else if(($totalAll <= 69) && ($totalAll >= 50))      {
+            }else{
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
 
-                echo "<h1>LOW COMPETENT!</h1>";
-
-                echo number_format((float)$totalAll, 2, '.', ''); 
-
-
-            }else if(($totalAll <=89 ) && ($totalAll >= 70)) {
-
-                echo "<h1>COMPETENT!</h1>";
-
-                echo number_format((float)$totalAll, 2, '.', ''); 
-
-
-            }else if(($totalAll <=100 ) && ($totalAll >= 90)) {
-
-                echo "<h1>HIGHLY COMPETENT!</h1>";
-
-                echo number_format((float)$totalAll, 2, '.', ''); 
+                echo "<h1>PASS!</h1>";
+                echo number_format((float)$totalAll, 2, '.', '');      
             }
-
-
-        //echo $totalAll; 
+        //echo $totalAll;
 
         echo "<h2>You answered</h2>";
         echo "<h1>".$total_markah111."/".$total_soalan."</h1>";

@@ -24,10 +24,7 @@ use yii\helpers\ArrayHelper;
  */
 class QuestionController extends Controller
 {
-
-
-
-    public function behaviors()
+ public function behaviors()
     {
         return [
             'verbs' => [
@@ -66,26 +63,59 @@ class QuestionController extends Controller
         ]);
     }
 
+
+
     public function actionSoalan()
     {
-        //****************please change total number of question at limit()***************
-        $query = new Query;
-        $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                ->from('question')
-                ->orderBy('section, rand()')
-                ->limit(5);
-        //********************************************************************************
-           
-        $command = $query->createCommand();
-        $data = $command->queryAll(); 
+        $trainer_id = Yii::$app->user->identity->id; 
 
-        $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
-        
-        return $this->render('soalan', [
-            'soalan' => $data,
-            'items' => $items,
-            
-        ]);       
+        $query = new Query;
+        $query -> select(['count(question_id) as tot'])
+               -> from('question')
+               -> all();
+        $command = $query->createCommand();
+        $totquestion = $command->queryAll();
+        $num = $totquestion[0]['tot'];
+
+        $querytot = new Query;
+        $querytot -> select(['count(trainerAnswer_answer) as totAnswer'])
+                  -> from('trainerAnswer')
+                  -> where('trainer_id = "'.$trainer_id.'" ')
+                  -> all();
+        $commandtot = $querytot->createCommand();
+        $answer_tot = $commandtot->queryAll();
+        $answertot = $answer_tot[0]['totAnswer'];
+
+        if( $answertot >= $num){
+
+            $back = Yii::$app->request->referrer;
+               echo "<script>
+               confirm('You Had answered all questions')
+               window.location.href='$back';
+               </script>";
+
+
+        }
+        else{
+            //****************please change total number of question at limit()***************
+            $query = new Query;
+            $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                    ->from('question')
+                    ->orderBy('section, rand()')
+                    ->limit(5);
+            //********************************************************************************
+               
+            $command = $query->createCommand();
+            $data = $command->queryAll(); 
+
+            $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
+            $numbersoalan=1;
+            return $this->render('soalan', [
+                'soalan' => $data,
+                'items' => $items,
+                'numbersoalan' => $numbersoalan,
+            ]);   
+        }    
 
   
     }
@@ -111,7 +141,7 @@ class QuestionController extends Controller
             $totquestion1= $command1->queryAll();
 
             
-//****************kalau user dah jawab semua soalan*********************//
+        //****************kalau user dah jawab semua soalan*********************//
             if(!empty($totquestion1)){
 
                 foreach ($_POST['question_id'] as $key => $value) {
@@ -121,10 +151,9 @@ class QuestionController extends Controller
                     $connection->createCommand("UPDATE
                                         trainerAnswer 
                                         SET 
-                                        trainerAnswer_answer = '".$answer."' ,
-                                        trainer_id = '".$trainer_id."'
-                                        WHERE  
-                                        question_id = '".$question."'
+                                        trainerAnswer_answer = '".$answer."' 
+                                        WHERE  question_id = '".$question."'
+                                        AND    trainer_id = '".$trainer_id."'
                                         ")->execute();
                 }
                 
@@ -142,11 +171,12 @@ class QuestionController extends Controller
                 for($i=1; $i <= $num; $i++){
                     $connection= Yii::$app->db;
                     $connection->createCommand("INSERT INTO 
-                                                trainerAnswer (registered_question, question_id) 
+                                                trainerAnswer (registered_question, question_id, trainer_id) 
                                                 VALUES 
-                                                (:registered_question, :question_id)",[
+                                                (:registered_question, :question_id, :trainer_id)",[
                                                 ":registered_question" => $i,
                                                 ":question_id" => $i,
+                                                ":trainer_id" => $trainer_id,
                                                 ]
                                               )->execute();
 
@@ -158,10 +188,9 @@ class QuestionController extends Controller
                     $connection->createCommand("UPDATE
                                         trainerAnswer 
                                         SET 
-                                        trainerAnswer_answer = '".$answer."' ,
-                                        trainer_id = '".$trainer_id."'
-                                        WHERE  
-                                        question_id = '".$question."'
+                                        trainerAnswer_answer = '".$answer."'
+                                        WHERE  question_id = '".$question."'
+                                        AND    trainer_id = '".$trainer_id."'
                                         ")->execute();
                 }
             }
@@ -177,10 +206,20 @@ class QuestionController extends Controller
             $data = $command->queryAll(); 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
 
+
+            $queryjawa = new Query;
+            $queryjawa -> select(['count(trainerAnswer_answer) as totjaw'])
+                    -> from('trainerAnswer')
+                    -> where('trainer_id = "'.$trainer_id.'"')
+                    -> all();
+            $commandjawa = $queryjawa->createCommand();
+            $totjawapan = $commandjawa->queryAll();
+            $total_jawapan = $totjawapan[0]['totjaw'];
+
                 return $this->render('soalan', [
                     'soalan' => $data,
                     'items' => $items,
-                    
+                    'numbersoalan' => $total_jawapan,
                         
                 ]);   
         }
@@ -263,5 +302,11 @@ class QuestionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+    public function actionMark()
+    {
+        return $this->render('mark');
     }
 }
