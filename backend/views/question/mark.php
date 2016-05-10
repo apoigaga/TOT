@@ -3,8 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\db\Query;
-
-
+use yii\helpers\Url;
 
 $querym = new Query;
 $querym -> select(['count(*) as totmark'])
@@ -40,6 +39,7 @@ echo "<div class='jumbotron' >";
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
         <?php
+        //KENA BETULKAN CALCULATION
 
         $totalAll=($total_markah111/$total_soalan*100);
 
@@ -48,6 +48,9 @@ echo "<div class='jumbotron' >";
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
                 echo "<h1>FAIL!</h1>";
 
+                //return Yii::$app->response->redirect(Url::to(['site\index']));
+
+                echo "<button><a href='/TOT/backend/web/index.php?r=question/back'>Answer Again</a></button>";
 
             }else if(($totalAll <= 69) && ($totalAll >= 50))      {
 

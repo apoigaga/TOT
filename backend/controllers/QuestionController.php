@@ -102,19 +102,19 @@ class QuestionController extends Controller
             $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "A"')
-                     ->limit(2);
+                     ->limit(35);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "B"')
-                     ->limit(2);
+                     ->limit(7);
 
             $queryC = new Query;
             $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "C"')
-                     ->limit(2);
+                     ->limit(18);
             
             $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->createCommand();
             $data = $commandR->queryAll();
@@ -243,6 +243,56 @@ class QuestionController extends Controller
        window.location.href='$back';
        </script>";
     
+}
+
+public function actionBack()
+{
+
+          $trainer_id = Yii::$app->user->identity->id;
+
+          $connection= Yii::$app->db;
+          $connection->createCommand("DELETE FROM trainerAnswer
+                                      WHERE trainer_id = '".$trainer_id."'
+
+                                      ")->execute();
+
+          $connection1= Yii::$app->db;
+          $connection1->createCommand("DELETE FROM mark
+                                      WHERE trainer_id = '".$trainer_id."'
+
+                                      ")->execute();
+
+
+
+            $queryA = new Query;
+            $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "A"')
+                     ->limit(35);
+
+            $queryB = new Query;
+            $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "B"')
+                     ->limit(7);
+
+            $queryC = new Query;
+            $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "C"')
+                     ->limit(18);
+            
+            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->createCommand();
+            $data = $commandR->queryAll();
+
+            $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
+            $numbersoalan=1;
+            return $this->render('soalan', [
+                'soalan' => $data,
+                'items' => $items,
+                'numbersoalan' => $numbersoalan,
+            ]);   
+
 }
 
 
