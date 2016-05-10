@@ -116,7 +116,7 @@ class QuestionController extends Controller
                      ->where('section = "C"')
                      ->limit(2);
             
-            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->limit(4)->createCommand();
+            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->createCommand();
             $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
@@ -205,16 +205,16 @@ class QuestionController extends Controller
                                         ")->execute();
                 }
             }
-            $query = new Query;
-            //****************please change total number of question at limit()***************
-            $query  ->select(['q.question_id AS id','q.question AS soalan','q.code AS qcode'])  
-                    ->from('trainerAnswer t, question q')
-                    ->where('t.registered_question = q.question_id and t.trainerAnswer_answer is null')
-                    ->orderBy('section, rand()')
-                    ->limit(5);   
+            // $query = new Query;
+            // //****************please change total number of question at limit()***************
+            // $query  ->select(['q.question_id AS id','q.question AS soalan','q.code AS qcode'])  
+            //         ->from('trainerAnswer t, question q')
+            //         ->where('t.registered_question = q.question_id and t.trainerAnswer_answer is null')
+            //         ->orderBy('section, rand()')
+            //         ->limit(5);   
             //********************************************************************************        
-            $command = $query->createCommand();
-            $data = $command->queryAll(); 
+            // $command = $query->createCommand();
+            // $data = $command->queryAll(); 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
 
 
@@ -227,8 +227,9 @@ class QuestionController extends Controller
             $totjawapan = $commandjawa->queryAll();
             $total_jawapan = $totjawapan[0]['totjaw'];
 
-                return $this->render('soalan', [
-                    'soalan' => $data,
+                return $this->render('mark', [
+                    // 'soalan' => $data,
+
                     'items' => $items,
                     'numbersoalan' => $total_jawapan,
                         
