@@ -33,6 +33,15 @@ $connectionsavemark->createCommand("
                     ('".$total_markah111."', '".$trainer_id."') 
                     ")->execute();
 echo "<div class='jumbotron' >";
+
+$queryjawa = new Query;
+$queryjawa -> select(['count(trainerAnswer_answer) as totjaw'])
+        -> from('trainerAnswer')
+        -> where('trainer_id = "'.$trainer_id.'"')
+        -> all();
+$commandjawa = $queryjawa->createCommand();
+$totjawapan = $commandjawa->queryAll();
+$total_jawapan = $totjawapan[0]['totjaw'];
 ?>
 
 
@@ -79,7 +88,7 @@ echo "<div class='jumbotron' >";
         //echo $totalAll; 
 
         echo "<h2>You answered</h2>";
-        echo "<h1>".$total_markah111."/".$total_soalan."</h1>";
+        echo "<h1>".$total_markah111."/".$total_jawapan."</h1>";
         echo "<h2>Correct!</h2>";
 
         ?>
