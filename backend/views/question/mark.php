@@ -50,7 +50,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
         <?php
         //KENA BETULKAN CALCULATION
 
-        $totalAll=($total_markah111/$total_soalan*100);
+        $totalAll=($total_markah111/$total_jawapan*100);
 
         if($totalAll < 50)
             {

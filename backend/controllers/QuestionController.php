@@ -102,21 +102,24 @@ class QuestionController extends Controller
             $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "A"')
+                     ->orderBy('rand()')
                      ->limit(35);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "B"')
+                     ->orderBy('rand()')
                      ->limit(7);
 
             $queryC = new Query;
             $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "C"')
+                     ->orderBy('rand()')
                      ->limit(18);
             
-            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->createCommand();
+            $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');

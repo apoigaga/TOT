@@ -30,7 +30,7 @@ class Answer extends \yii\db\ActiveRecord
         return [
             [['answer', 'correct'], 'required'],
             [['question_id'], 'integer'],
-            [['answer', 'correct'], 'string', 'max' => 50]
+            [['answer', 'correct'], 'string']
         ];
     }
 
