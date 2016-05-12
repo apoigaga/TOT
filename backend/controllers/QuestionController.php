@@ -13,6 +13,7 @@ use yii\helpers\Html;
 use backend\models\Answer;
 use backend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
+use backend\models\Mark;
 
 
 
@@ -86,7 +87,7 @@ class QuestionController extends Controller
         $answer_tot = $commandtot->queryAll();
         $answertot = $answer_tot[0]['totAnswer'];
 
-        if( $answertot >= $num){
+        if( $exists = Mark::find()->where(['trainer_id' => $trainer_id])->exists()){
 
             $back = Yii::$app->request->referrer;
                echo "<script>
@@ -103,21 +104,21 @@ class QuestionController extends Controller
                      ->from('question')
                      ->where('section = "A"')
                      ->orderBy('rand()')
-                     ->limit(35);
+                     ->limit(3);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "B"')
                      ->orderBy('rand()')
-                     ->limit(7);
+                     ->limit(3);
 
             $queryC = new Query;
             $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "C"')
                      ->orderBy('rand()')
-                     ->limit(18);
+                     ->limit(1);
             
             $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
