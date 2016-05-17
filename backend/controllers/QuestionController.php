@@ -186,13 +186,18 @@ class QuestionController extends Controller
                 for($i=1; $i <= $num; $i++){
                     $connection= Yii::$app->db;
                     $connection->createCommand("INSERT INTO 
-                                                trainerAnswer (registered_question, question_id, trainer_id) 
+                                                trainerAnswer (registered_question, question_id, trainer_id)
+
                                                 VALUES 
                                                 (:registered_question, :question_id, :trainer_id)",[
                                                 ":registered_question" => $i,
                                                 ":question_id" => $i,
                                                 ":trainer_id" => $trainer_id,
                                                 ]
+
+
+
+
                                               )->execute();
 
                 }
@@ -272,21 +277,24 @@ public function actionBack()
             $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "A"')
-                     ->limit(35);
+                     ->orderBy('rand()')
+                     ->limit(3);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "B"')
-                     ->limit(7);
+                     ->orderBy('rand()')
+                     ->limit(3);
 
             $queryC = new Query;
             $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "C"')
-                     ->limit(18);
+                     ->orderBy('rand()')
+                     ->limit(1);
             
-            $commandR = $queryA->union($queryB)->union($queryC)->orderBy('rand()')->createCommand();
+            $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');

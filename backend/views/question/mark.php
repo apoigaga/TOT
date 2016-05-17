@@ -5,17 +5,21 @@ use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\helpers\Url;
 
+
+$trainer_id = Yii::$app->user->identity->id;
+
 $querym = new Query;
 $querym -> select(['count(*) as totmark'])
         -> from('trainerAnswer t, answer a')
         -> where('t.question_id = a.question_id and t.trainerAnswer_answer = a.answer_id and a.correct=1')
+        -> andWhere ('trainer_id = "'.$trainer_id.'"')
         -> all();
 $commandm = $querym->createCommand();
 $totmarkah = $commandm->queryAll();
 $total_markah111 = $totmarkah[0]['totmark'];
 
 
-$trainer_id = Yii::$app->user->identity->id;
+
 $querys = new Query;
 $querys -> select(['count(question_id) as totq'])
         -> from('question')
