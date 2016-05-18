@@ -4,24 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\QuestionSearch */
+/* @var $model backend\models\examTimeSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="question-search">
+<div class="exam-time-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'question_id') ?>
+    <?= $form->field($model, 'examTime_id') ?>
 
-    <?= $form->field($model, 'question') ?>
+    <?= $form->field($model, 'exam_start') ?>
 
-    <?= $form->field($model, 'code') ?>
-
-    <?= $form->field($model, 'section') ?>
+    <?= $form->field($model, 'exam_end') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -42,6 +42,7 @@ class MarkSearch extends Mark
     public function search($params)
     {
         $query = Mark::find();
+        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

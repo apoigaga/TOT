@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /* @var $this yii\web\View */
 
@@ -9,7 +9,7 @@ use yii\db\Query;
 $this->title = 'Home';
 
 ?>
-<body class="nav-md">
+
 
     <div class="container body">
         <div class="main_container">
@@ -26,11 +26,29 @@ $this->title = 'Home';
                                         <p class="lead">This exam will require you to answer 100 question within 90 minutes</p>
                                          <p class="lead">Goodluck</p>
                                          <?php 
+
+                                             date_default_timezone_set('Asia/Kuala_Lumpur');
+
+                                            $queryT = new Query;
+                                            $queryT -> select(['exam_start'])
+                                                    -> from('examTime')
+                                                    -> all();
+
+                                            $commandT = $queryT->createCommand();
+                                            $time = $commandT->queryAll();
+                                            $dataT = $time[0]['exam_start'];
+
+
+
+                                            
                                                     
-                                                    $val2 = '2018-03-18 10:36:09';
+                                                    $val2 = $dataT;
                                                     $currentTime = date("Y-m-d h:i:s");
                                                     $datetime1 = new DateTime($currentTime);
                                                     $datetime2 = new DateTime($val2);
+
+                                                    // echo $currentTime."<br>"; 
+                                                    // echo $val2;
 
                                                     //get the end time from db
                                                     $endTime = date("F d, Y h:i:s");
@@ -40,11 +58,11 @@ $this->title = 'Home';
                                                     // echo date("Y-m-d h:i:s");
                                         ?>
 
-                                                    <?php if($datetime1 > $datetime2){ ?>
+                                                    <?php if($datetime1 < $datetime2){ ?>
 
                                                     <h1>Time expired</h1>
 
-                                                    <?php }else{ ?>
+                                                    <?php }else{?>
 
                                                         <?= Html::a('START EXAM', ['/question/soalan'], ['class'=>'btn btn-info']) ?><br><br><br><br><br><br><br>
                                         
@@ -61,7 +79,7 @@ $this->title = 'Home';
                                                         var x = new Date()
                                                         var x1=x.getHours( )+ ":" + x.getMinutes() + ":" + x.getSeconds();
                                                         // var d = new Date("<?php echo $endTime ?>");
-                                                        var d = new Date("March 30, 2016 02:50:00");
+                                                        var d = new Date("<?=$dataT?>");
                                                         var x2=d.getHours( )+ ":" + d.getMinutes() + ":" + d.getSeconds();
                                                         document.getElementById('ct').innerHTML = x1;
                                                         document.getElementById('et').innerHTML = x2;
@@ -75,21 +93,20 @@ $this->title = 'Home';
                                                             hour_carry += 1;
                                                         }
                                                         hour = e[0]-s[0]-hour_carry;
-                                                        diff = min; 
+                                                        diff = hour; 
 
-                                                        document.getElementById('bt').innerHTML = diff;
+                                                        
                                                         tt=display_c();
                                                     }
                                                     </script>
                                                     <body onload=display_ct();>
-                                                    <p>current time
+                                                    <p>Current Time
                                                     <span id='ct' ></span></p>
 
-                                                    <p>end time
+                                                    <p>Exam Start
                                                     <span id='et' ></span></p>
 
-                                                    <p>bal time
-                                                    <span id='bt' ></span></p>
+                        
                                         
                                     </div>
 

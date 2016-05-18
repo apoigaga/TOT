@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use backend\models\Mark;
-use backend\models\MarkSearch;
+use frontend\models\Mark;
+use frontend\models\MarkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,7 +27,7 @@ class MarkController extends Controller
     }
 
     /**
-     * Lists all Mark models. 
+     * Lists all Mark models.
      * @return mixed
      */
     public function actionIndex()

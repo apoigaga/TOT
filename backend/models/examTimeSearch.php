@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Question;
+use backend\models\ExamTime;
 
 /**
- * QuestionSearch represents the model behind the search form about `backend\models\Question`.
+ * examTimeSearch represents the model behind the search form about `backend\models\ExamTime`.
  */
-class QuestionSearch extends Question
+class examTimeSearch extends ExamTime
 {
     /**
      * @inheritdoc
@@ -18,9 +18,8 @@ class QuestionSearch extends Question
     public function rules()
     {
         return [
-            [['question_id'], 'integer'],
-            [['question'], 'safe'],
-         
+            [['examTime_id'], 'integer'],
+            [['exam_start', 'exam_end'], 'safe'],
         ];
     }
 
@@ -42,7 +41,9 @@ class QuestionSearch extends Question
      */
     public function search($params)
     {
-        $query = Question::find();
+        $query = ExamTime::find();
+
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,11 +57,12 @@ class QuestionSearch extends Question
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
-            'question_id' => $this->question_id,
+            'examTime_id' => $this->examTime_id,
+            'exam_start' => $this->exam_start,
+            'exam_end' => $this->exam_end,
         ]);
-
-        $query->andFilterWhere(['like', 'question', $this->question]);
 
         return $dataProvider;
     }
