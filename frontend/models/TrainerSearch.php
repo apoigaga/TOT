@@ -19,7 +19,7 @@ class TrainerSearch extends Trainer
     {
         return [
             [['trainer_id'], 'integer'],
-            [['trainer_name', 'trainer_icNO', 'trainer_address', 'trainer_phoneNO', 'trainer_email', 'trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification', 'trainer_occupation', 'trainer_dateOfTraining'], 'safe'],
+            [['trainer_name', 'trainer_icNO', 'trainer_address', 'trainer_phoneNO', 'trainer_email', 'trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification', 'trainer_occupation', 'trainer_dateOfTraining','gender_ID'], 'safe'],
         ];
     }
 
@@ -58,6 +58,7 @@ class TrainerSearch extends Trainer
         $query->andFilterWhere([
             'trainer_id' => $this->trainer_id,
             'trainer_dateOfTraining' => $this->trainer_dateOfTraining,
+            'gender_ID'=> $this->gender_ID,
         ]);
 
         $query->andFilterWhere(['like', 'trainer_name', $this->trainer_name])

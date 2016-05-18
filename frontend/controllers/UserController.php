@@ -8,7 +8,8 @@ use frontend\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+// use kartik\widgets\Growl;
+use kartik\growl\Growl;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -39,6 +40,38 @@ class UserController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+
+    public function actionChange_password()
+    {
+        $user = Yii::$app->user->identity;
+        $loadedPost = $user->load(Yii::$app->request->post());
+
+        if($loadedPost && $user->validate()){
+
+            $user->password = $user->newPassword;
+            $user->save(false);
+
+            // Yii::$app->session->setFlash('success', "You have successfully changed your password.");
+            // // return $this->refresh();
+            // return $this->render('/site/index');
+
+            echo Growl::widget([
+                'type' => Growl::TYPE_SUCCESS,
+                'icon' => 'glyphicon glyphicon-ok-sign',
+                'title' => 'Well Done',
+                'showSeparator' => true,
+                'body' => 'Password change successful',
+            ]);
+
+            return $this->render('/site/index');
+
+        }
+
+        return $this->render("change_password", [
+            'user'=> $user,
+            ]);
     }
 
     /**
@@ -120,26 +153,4 @@ class UserController extends Controller
         }
     }
 
-    public function actionChangePassword()
-    {
-
-        $model=$this->findModel(Yii::$app->user->id);
-        $model->scenario = 'change';
-
-        if(isset($_POST['User']))
-        {
-            $model->attributes = $_POST['User'];
-            $user = User::findOne(Yii::$app->user->id);
-           
-            $model->password_hash = md5($model->new_pass.$model->new_pass);
-            if($model->save())
-                return $this->redirect(['/site/index']);
-        }
-
-        return $this->render('changepassword', [
-                'model' => $model,
-            ]);
-
-
-    }
 }

@@ -18,7 +18,7 @@ class GenderSearch extends Gender
     public function rules()
     {
         return [
-            [['gender_id'], 'integer'],
+            [['gender_ID'], 'integer'],
             [['gender_type'], 'safe'],
         ];
     }
@@ -56,7 +56,7 @@ class GenderSearch extends Gender
         }
 
         $query->andFilterWhere([
-            'gender_id' => $this->gender_id,
+            'gender_ID' => $this->gender_ID,
         ]);
 
         $query->andFilterWhere(['like', 'gender_type', $this->gender_type]);

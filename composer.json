@@ -18,14 +18,14 @@
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-<<<<<<< HEAD
         "composer-plugin-api": "^1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "yiisoft/yii2-jui": "@dev"
-
-=======
-        "kartik-v/yii2-widget-alert": "*"
->>>>>>> 8785d848084621eb5e1a4ed0987f8e3e0755692b
+        "yiisoft/yii2-jui": "@dev",
+        "kartik-v/yii2-widget-alert": "*",
+        "kartik-v/yii2-widget-growl": "@dev",
+        "kartik-v/yii2-widgets": "@dev",
+        "kartik-v/yii2-password": "@dev",
+        "kartik-v/yii2-label-inplace": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

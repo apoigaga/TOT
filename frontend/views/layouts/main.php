@@ -34,27 +34,25 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-<<<<<<< HEAD
-    // $menuItems = [
-    //     ['label' => 'Home', 'url' => ['/site/index']],
-    //     ['label' => 'About', 'url' => ['/site/about']],
-    //     ['label' => 'Contact', 'url' => ['/site/contact']],
-    // ];
-=======
+
     $menuItems = [
         ['label' => 'Home', 'url' => Yii::$app->homeUrl],
-        ['label' => 'Start Exam', 'url' => ['/site/about']],
-         ['label' => 'Profile', 'url' => ['/trainer/create']],
     ];
->>>>>>> 9f6301637bc88c38e2b0e556b716f3a2bf8abaec
+
+    $menuItems[] = ['label'=>'Profile',
+        'items'=>[
+            ['label'=>'Register', 'url' => ['/trainer/create']],
+            ['label'=>'Change Password', 'url' => ['/user/change_password']],
+        ],
+
+    ];
+
     if (Yii::$app->user->isGuest) {
-        //$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
+        ['label' => 'Signup', 'url' => ['/site/signup']],
         ['label' => '', 'url' => ['/trainer/create']],
-
-
-
         ];
     } 
     else {
@@ -68,7 +66,7 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'nav-pills navbar-right nav-pills'],
         'items' => $menuItems,
     ]);
     NavBar::end();
@@ -82,14 +80,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

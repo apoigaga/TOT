@@ -1,7 +1,7 @@
 html,
 body {
   background-image: 
-    url(../img/bg2.jpg);
+    url(../images/bg2.jpg);
     height: 100%;
 }
 
@@ -108,4 +108,9 @@ a.desc:after {
 
 .nav > li > form > button:hover {
     text-decoration: none;
+}
+
+/*main layout*/
+.dropdown:hover .dropdown-menu {
+display: block;
 }
