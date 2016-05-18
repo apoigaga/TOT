@@ -13,7 +13,7 @@ use yii\helpers\Html;
 use frontend\models\Answer;
 use frontend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
-
+use frontend\models\Mark;
 
 
 
@@ -86,7 +86,7 @@ class QuestionController extends Controller
         $answer_tot = $commandtot->queryAll();
         $answertot = $answer_tot[0]['totAnswer'];
 
-        if( $answertot >= $num){
+        if( $exists = Mark::find()->where(['trainer_id' => $trainer_id])->exists()){
 
             $back = Yii::$app->request->referrer;
                echo "<script>
@@ -97,16 +97,30 @@ class QuestionController extends Controller
 
         }
         else{
-            //****************please change total number of question at limit()***************
-            $query = new Query;
-            $query  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                    ->from('question')
-                    ->orderBy('section, rand()')
-                    ->limit(5);
-            //********************************************************************************
-               
-            $command = $query->createCommand();
-            $data = $command->queryAll(); 
+            
+            $queryA = new Query;
+            $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "A"')
+                     ->orderBy('rand()')
+                     ->limit(3);
+
+            $queryB = new Query;
+            $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "B"')
+                     ->orderBy('rand()')
+                     ->limit(3);
+
+            $queryC = new Query;
+            $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "C"')
+                     ->orderBy('rand()')
+                     ->limit(1);
+            
+            $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
+            $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
             $numbersoalan=1;
@@ -171,13 +185,18 @@ class QuestionController extends Controller
                 for($i=1; $i <= $num; $i++){
                     $connection= Yii::$app->db;
                     $connection->createCommand("INSERT INTO 
-                                                trainerAnswer (registered_question, question_id, trainer_id) 
+                                                trainerAnswer (registered_question, question_id, trainer_id)
+
                                                 VALUES 
                                                 (:registered_question, :question_id, :trainer_id)",[
                                                 ":registered_question" => $i,
                                                 ":question_id" => $i,
                                                 ":trainer_id" => $trainer_id,
                                                 ]
+
+
+
+
                                               )->execute();
 
                 }
@@ -194,16 +213,16 @@ class QuestionController extends Controller
                                         ")->execute();
                 }
             }
-            $query = new Query;
-            //****************please change total number of question at limit()***************
-            $query  ->select(['q.question_id AS id','q.question AS soalan','q.code AS qcode'])  
-                    ->from('trainerAnswer t, question q')
-                    ->where('t.registered_question = q.question_id and t.trainerAnswer_answer is null')
-                    ->orderBy('section, rand()')
-                    ->limit(5);   
+            // $query = new Query;
+            // //****************please change total number of question at limit()***************
+            // $query  ->select(['q.question_id AS id','q.question AS soalan','q.code AS qcode'])  
+            //         ->from('trainerAnswer t, question q')
+            //         ->where('t.registered_question = q.question_id and t.trainerAnswer_answer is null')
+            //         ->orderBy('section, rand()')
+            //         ->limit(5);   
             //********************************************************************************        
-            $command = $query->createCommand();
-            $data = $command->queryAll(); 
+            // $command = $query->createCommand();
+            // $data = $command->queryAll(); 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
 
 
@@ -216,8 +235,9 @@ class QuestionController extends Controller
             $totjawapan = $commandjawa->queryAll();
             $total_jawapan = $totjawapan[0]['totjaw'];
 
-                return $this->render('soalan', [
-                    'soalan' => $data,
+                return $this->render('mark', [
+                    // 'soalan' => $data,
+
                     'items' => $items,
                     'numbersoalan' => $total_jawapan,
                         
@@ -231,6 +251,59 @@ class QuestionController extends Controller
        window.location.href='$back';
        </script>";
     
+}
+
+public function actionBack()
+{
+
+          $trainer_id = Yii::$app->user->identity->id;
+
+          $connection= Yii::$app->db;
+          $connection->createCommand("DELETE FROM trainerAnswer
+                                      WHERE trainer_id = '".$trainer_id."'
+
+                                      ")->execute();
+
+          $connection1= Yii::$app->db;
+          $connection1->createCommand("DELETE FROM mark
+                                      WHERE trainer_id = '".$trainer_id."'
+
+                                      ")->execute();
+
+
+
+            $queryA = new Query;
+            $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "A"')
+                     ->orderBy('rand()')
+                     ->limit(3);
+
+            $queryB = new Query;
+            $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "B"')
+                     ->orderBy('rand()')
+                     ->limit(3);
+
+            $queryC = new Query;
+            $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                     ->from('question')
+                     ->where('section = "C"')
+                     ->orderBy('rand()')
+                     ->limit(1);
+            
+            $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
+            $data = $commandR->queryAll();
+
+            $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
+            $numbersoalan=1;
+            return $this->render('soalan', [
+                'soalan' => $data,
+                'items' => $items,
+                'numbersoalan' => $numbersoalan,
+            ]);   
+
 }
 
 

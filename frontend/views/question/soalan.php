@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -14,6 +14,7 @@ use kartik\widgets\Alert;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\QuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 
 
 
@@ -57,7 +58,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 <span id='et' ></span></p>
 
 <p>bal time
-<span id='bt' ></span></p>       -->                  
+<span id='bt' ></span></p>    -->                     
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +75,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styling plus plugins -->
     <link href="css/site.css" rel="stylesheet">
+
 </head>
 
 
@@ -88,6 +90,13 @@ $total_markah111 = $totmarkah[0]['totmark'];
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
 
+                            <!-- <div class="panel panel-default">
+                              <div class="panel-body">
+                                Basic panel example
+                              </div>
+                            </div>
+ -->
+                            <!-- <iframe src="http://localhost/TOT/backend/web/index.php?r=question%2Fsoalan" width="100%" height="650" frameborder="0" scrolling="yes"></iframe> -->
                             <?php 
 
                             if($total_soalan != $total_jawapan)
@@ -138,9 +147,12 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                 
                                                foreach ($xData as $ans) 
                                                {
+
                                                 echo "<font size='3'>";
                                                 echo "<ul>";
+                                                echo "<label>";
                                                 echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];
+                                                echo "</label>";
                                                 echo "</ul>";
                                                 echo "</font>";
                                                 
@@ -156,7 +168,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                     echo "<div class='pull-right'>";
                                     if($total_soalan != $total_jawapan)
                                     {
-                                        echo "<input type='submit' name='Submit' value='Next' class='btn btn-success' /> ";
+                                        echo "<input type='submit' name='Submit' value='Finish' class='btn btn-success' /> ";
                                     
                                     }else{
                                                 
@@ -208,7 +220,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 
 
-        echo $dataT;        
+        echo $dataT;       
 
     ?>
   

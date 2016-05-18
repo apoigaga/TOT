@@ -147,9 +147,12 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                 
                                                foreach ($xData as $ans) 
                                                {
+
                                                 echo "<font size='3'>";
                                                 echo "<ul>";
+                                                echo "<label>";
                                                 echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];
+                                                echo "</label>";
                                                 echo "</ul>";
                                                 echo "</font>";
                                                 
