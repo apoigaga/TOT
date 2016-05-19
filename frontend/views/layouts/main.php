@@ -35,20 +35,19 @@ AppAsset::register($this);
         ],
     ]);
 
-<<<<<<< HEAD
-=======
+
     // $menuItems = [
     //     ['label' => 'Home', 'url' => ['/site/index']],
     //     ['label' => 'About', 'url' => ['/site/about']],
     //     ['label' => 'Contact', 'url' => ['/site/contact']],
     // ];
 
->>>>>>> ceee8c5e047def7a0ad813aadd96e0b38314d096
+
     $menuItems = [
         ['label' => 'Home', 'url' => Yii::$app->homeUrl],
     ];
 
-<<<<<<< HEAD
+
     $menuItems[] = ['label'=>'Profile',
         'items'=>[
             ['label'=>'Register', 'url' => ['/trainer/create']],
@@ -56,13 +55,11 @@ AppAsset::register($this);
         ],
 
     ];
+        
 
     if (Yii::$app->user->isGuest) {
-        
-=======
-    if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
->>>>>>> ceee8c5e047def7a0ad813aadd96e0b38314d096
+
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
         ['label' => 'Signup', 'url' => ['/site/signup']],
