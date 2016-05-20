@@ -36,6 +36,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'trainer_occupation') ?>
 
     <?php // echo $form->field($model, 'trainer_dateOfTraining') ?>
+    
+    <?php // echo $form->field($model, 'gender_ID') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

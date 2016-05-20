@@ -23,8 +23,7 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.
-                '],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['ic_number', 'required'],
@@ -46,6 +45,22 @@ class SignupForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
+    // public function signup()
+    // {
+    //     if ($this->validate()) {
+    //     $user = new User();
+    //     $user->username = $this->username;
+    //     $user->ic_number = $this->ic_number;
+    //     $user->email = $this->email;
+    //     $user->setPassword($this->password);
+    //     $user->generateAuthKey();
+    //     if ($user->save()) {
+    //             return $user;
+    //         }
+    //     }
+    //     return null;
+    // }
+
     public function signup()
     {
         if (!$this->validate()) {
@@ -61,4 +76,5 @@ class SignupForm extends Model
         
         return $user->save() ? $user : null;
     }
+
 }

@@ -63,7 +63,7 @@ class GenderController extends Controller
         $model = new Gender();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->gender_id]);
+            return $this->redirect(['view', 'id' => $model->gender_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,7 +82,7 @@ class GenderController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->gender_id]);
+            return $this->redirect(['view', 'id' => $model->gender_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -28,10 +28,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['login','logout', 'signup'],
+                'only' => ['logout','signup'],
                 'rules' => [
                     [
-                        'actions' => ['login','signup'],
+                        'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -91,7 +91,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-             return $this->redirect('index.php?r=user/change-password');
+             // return $this->redirect('index.php?r=user/change_password');
+             return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -108,7 +109,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        // return $this->goHome();
+        $this->redirect(array('site/login')); 
     }
 
     /**
@@ -139,9 +141,9 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionStartExam()
     {
-        return $this->render('about');
+        return $this->render('startexam');
     }
 
     /**

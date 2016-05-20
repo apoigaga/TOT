@@ -18,6 +18,7 @@ use Yii;
  * @property string $trainer_highestQualification
  * @property string $trainer_occupation
  * @property string $trainer_dateOfTraining
+ * @property integer $gender_ID
  */
 class Trainer extends \yii\db\ActiveRecord
 {
@@ -37,6 +38,7 @@ class Trainer extends \yii\db\ActiveRecord
         return [
             [['trainer_name', 'trainer_icNO', 'trainer_address', 'trainer_phoneNO', 'trainer_email', 'trainer_race', 'trainer_maritialStatus', 'trainer_highestQualification', 'trainer_occupation', 'trainer_dateOfTraining'], 'required'],
             [['trainer_dateOfTraining'], 'safe'],
+            [['gender_ID'], 'integer'],
             [['trainer_name', 'trainer_email', 'trainer_occupation'], 'string', 'max' => 50],
             [['trainer_icNO'], 'string', 'max' => 12],
             [['trainer_address'], 'string', 'max' => 100],
@@ -52,16 +54,23 @@ class Trainer extends \yii\db\ActiveRecord
     {
         return [
             'trainer_id' => 'Trainer ID',
-            'trainer_name' => 'Name',
-            'trainer_icNO' => 'Ic No',
-            'trainer_address' => 'Address',
-            'trainer_phoneNO' => 'Phone No',
-            'trainer_email' => 'Email',
-            'trainer_race' => 'Race',
-            'trainer_maritialStatus' => 'Maritial Status',
-            'trainer_highestQualification' => 'Highest Qualification',
-            'trainer_occupation' => 'Occupation',
-            'trainer_dateOfTraining' => 'Date Of Training',
+            'trainer_name' => 'Trainer Name',
+            'trainer_icNO' => 'Trainer Ic No',
+            'trainer_address' => 'Trainer Address',
+            'trainer_phoneNO' => 'Trainer Phone No',
+            'trainer_email' => 'Trainer Email',
+            'trainer_race' => 'Trainer Race',
+            'trainer_maritialStatus' => 'Trainer Maritial Status',
+            'trainer_highestQualification' => 'Trainer Highest Qualification',
+            'trainer_occupation' => 'Trainer Occupation',
+            'trainer_dateOfTraining' => 'Trainer Date Of Training',
+            'gender_ID' => 'Gender  ID',
         ];
     }
+
+    public function getGender()
+    {
+        return $this->hasOne(Gender::classname(),['gender_id'=> 'gender_ID']);
+    }
+    
 }

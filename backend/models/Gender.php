@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "gender".
  *
- * @property integer $gender_id
+ * @property integer $gender_ID
  * @property string $gender_type
  */
 class Gender extends \yii\db\ActiveRecord
@@ -27,7 +27,7 @@ class Gender extends \yii\db\ActiveRecord
     {
         return [
             [['gender_type'], 'required'],
-            [['gender_type'], 'string', 'max' => 10]
+            [['gender_type'], 'string']
         ];
     }
 
@@ -37,13 +37,8 @@ class Gender extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'gender_id' => 'Gender ID',
+            'gender_ID' => 'Gender  ID',
             'gender_type' => 'Gender Type',
         ];
-    }
-
-    public function getTrainer()
-    {
-        return $this->hasOne(Trainer::classname(),['trainer_id'=> 'trainer_id']);
     }
 }

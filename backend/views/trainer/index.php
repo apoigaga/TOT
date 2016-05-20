@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'trainer_highestQualification',
             // 'trainer_occupation',
             // 'trainer_dateOfTraining',
+            // 'gender_ID',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

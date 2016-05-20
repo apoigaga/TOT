@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Gender */
 
-$this->title = 'Update Gender: ' . ' ' . $model->gender_id;
+$this->title = 'Update Gender: ' . ' ' . $model->gender_ID;
 $this->params['breadcrumbs'][] = ['label' => 'Genders', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->gender_id, 'url' => ['view', 'id' => $model->gender_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->gender_ID, 'url' => ['view', 'id' => $model->gender_ID]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="gender-update">
