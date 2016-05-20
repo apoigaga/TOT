@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use frontend\models\ExamTime;
+use backend\models\TrainerAnswer;
 use yii\db\Query;
 
 $this->title = 'Start Exam';
@@ -35,13 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                              date_default_timezone_set('Asia/Kuala_Lumpur');
 
-                                            // $queryT = new Query;
-                                            // $queryT -> select(['exam_start'])
-                                            //         -> from('examTime')
-                                            //         -> one();
+                                            $queryT = new Query;
+                                            $queryT -> select(['exam_start'])
+                                                    -> from('examTime')
+                                                    -> one();
 
-                                            // $commandT = $queryT->createCommand();
-                                            // $time = $commandT->queryAll();
+                                            $commandT = $queryT->createCommand();
+                                            $time = $commandT->queryAll();
 
                                             $time = ExamTime::find()->select(['exam_start'])->one();
 
