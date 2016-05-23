@@ -36,17 +36,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                              date_default_timezone_set('Asia/Kuala_Lumpur');
 
+                                            // $queryT = new Query;
+                                            // $queryT -> select(['exam_start'])
+                                            //         -> from('examTime')
+                                            //         -> one();
+
+                                            // $commandT = $queryT->createCommand();
+                                            // $time = $commandT->queryAll();
+
+                                            // $time = ExamTime::find()->select(['exam_start'])->one();
+
+                                            // $dataT = $time[0]['exam_start'];
+
                                             $queryT = new Query;
                                             $queryT -> select(['exam_start'])
                                                     -> from('examTime')
-                                                    -> one();
-
+                                                    -> all();
                                             $commandT = $queryT->createCommand();
                                             $time = $commandT->queryAll();
-
-                                            $time = ExamTime::find()->select(['exam_start'])->one();
-
-                                            $dataT = $time;
+                                            $dataT = $time[0]['exam_start'];
                                             
                                                     
                                                     $val2 = $dataT;

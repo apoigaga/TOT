@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d80fae2ad134def80047706cb0777f2",
-    "content-hash": "5606b10d5cc914d1e0a53b78706966ae",
+    "hash": "7782079f6acbfc2013b390a9ccd85454",
+    "content-hash": "2418dec57a9b9bc8033bd9f6537b73c7",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -580,12 +580,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-password.git",
-                "reference": "3d1577bf5fd36991a56a8d8b8b459c434f418df1"
+                "reference": "fb5634389a1eaa87c3f321761add3fd46ce7677b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-password/zipball/3d1577bf5fd36991a56a8d8b8b459c434f418df1",
-                "reference": "3d1577bf5fd36991a56a8d8b8b459c434f418df1",
+                "url": "https://api.github.com/repos/kartik-v/yii2-password/zipball/fb5634389a1eaa87c3f321761add3fd46ce7677b",
+                "reference": "fb5634389a1eaa87c3f321761add3fd46ce7677b",
                 "shasum": ""
             },
             "require": {
@@ -623,26 +623,31 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-02-21 09:05:19"
+            "time": "2016-05-15 19:25:37"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
-            "version": "v1.4.7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-activeform.git",
-                "reference": "6acc1539c37d731c79a67989409ad76e389fd5f0"
+                "reference": "53c2f877f12ba0b79e8346b6cae50cbba2bcfc69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-activeform/zipball/6acc1539c37d731c79a67989409ad76e389fd5f0",
-                "reference": "6acc1539c37d731c79a67989409ad76e389fd5f0",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-activeform/zipball/53c2f877f12ba0b79e8346b6cae50cbba2bcfc69",
+                "reference": "53c2f877f12ba0b79e8346b6cae50cbba2bcfc69",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\form\\": ""
@@ -670,7 +675,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-12-11 19:07:50"
+            "time": "2016-04-27 18:38:05"
         },
         {
             "name": "kartik-v/yii2-widget-affix",
@@ -831,12 +836,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
-                "reference": "af32eeee557fa12e1b362e24fd8d0bc14713e361"
+                "reference": "52606c8764a174aa0d5e6483ed811f617c74ee4e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/52606c8764a174aa0d5e6483ed811f617c74ee4e",
-                "reference": "af32eeee557fa12e1b362e24fd8d0bc14713e361",
+                "reference": "52606c8764a174aa0d5e6483ed811f617c74ee4e",
                 "shasum": ""
             },
             "require": {
@@ -877,7 +882,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-03-25 08:49:17"
+            "time": "2016-04-08 10:42:51"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -2243,7 +2248,8 @@
         "kartik-v/yii2-widget-growl": 20,
         "kartik-v/yii2-widgets": 20,
         "kartik-v/yii2-password": 20,
-        "kartik-v/yii2-label-inplace": 20
+        "kartik-v/yii2-label-inplace": 20,
+        "kartik-v/yii2-widget-activeform": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
