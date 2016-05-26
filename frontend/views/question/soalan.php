@@ -101,8 +101,10 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                             if($total_soalan != $total_jawapan)
                             {
+                        
                                 echo "<center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center>";
-                                $this->title = 'Questions';
+                                echo '<br>';
+                                $this->title = 'Online Exam';
 
                             }else{
                                 
@@ -220,7 +222,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 
 
-        echo $dataT;       
+       // echo $dataT;       
 
     ?>
   
