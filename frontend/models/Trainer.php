@@ -72,5 +72,5 @@ class Trainer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Gender::classname(),['gender_id'=> 'gender_ID']);
     }
-    
+
 }

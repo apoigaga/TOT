@@ -41,7 +41,7 @@ $this->title = 'Training of Trainers';
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Welcome to <span>TOT</span></h1>
             <p class="animated fadeInRightBig">It's not what you teach but how you teach it</p>
-            <?= Html::a('Start Exam', ['/site/start-exam'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
+            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
           </div>
         </div>
 
@@ -49,14 +49,14 @@ $this->title = 'Training of Trainers';
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Come Join <span>Us</span></h1>
             <p class="animated fadeInRightBig">Hard Work Pays Off</p>
-            <?= Html::a('Start Exam', ['/site/start-exam'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
+            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/3.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">We are <span>Trainer</span></h1>
             <p class="animated fadeInRightBig">Let Me Inspire You</p>
-            <?= Html::a('Start Exam', ['/site/start-exam'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
+            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
           </div>
         </div>
       </div>
