@@ -26,20 +26,17 @@
         "kartik-v/yii2-widgets": "@dev",
         "kartik-v/yii2-password": "@dev",
         "kartik-v/yii2-label-inplace": "@dev",
-<<<<<<< HEAD
         "composer-plugin-api":"^1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "yiisoft/yii2-jui": "@dev",
         "kartik-v/yii2-widget-alert": "*",
         "kartik-v/yii2-popover-x": "@dev",
-        "kartik-v/yii2-nav-x": "@dev"
-=======
+        "kartik-v/yii2-nav-x": "@dev",
         "composer-plugin-api": "^1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "yiisoft/yii2-jui": "@dev",
         "kartik-v/yii2-widget-alert": "*",
         "kartik-v/yii2-widget-activeform": "@dev"
->>>>>>> 86e8be095939908c15da26339266974e6d5731b6
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

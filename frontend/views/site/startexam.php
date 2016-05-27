@@ -14,35 +14,8 @@ $this->title = 'Start Exam';
     <div class="container body">
         <div class="main_container">
             <div class="main_container">
-<<<<<<< HEAD
-                <div class="clearfix"></div>
-                    <div class="row">
-                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                               <div class="x_content">
-
-                                    <div class="jumbotron">
-                                        <h1>Training for trainer!</h1>
-
-                                        <p class="lead">This exam will require you to answer 100 question within 90 minutes</p>
-                                        <p class="lead">Goodluck</p>
-
-                                        <?php 
-
-                                             date_default_timezone_set('Asia/Kuala_Lumpur');
-
-                                            $queryT = new Query;
-                                            $queryT -> select(['exam_start'])
-                                                    -> from('examTime')
-                                                    -> all();
-
-                                            $commandT = $queryT->createCommand();
-                                            $time = $commandT->queryAll();
-                                            $dataT = $time[0]['exam_start'];
 
 
-
-=======
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
@@ -78,7 +51,7 @@ $this->title = 'Start Exam';
                                     // echo "<pre>";
                                     // var_dump($datetime1->diff($datetime2));
                                     // echo date("Y-m-d h:i:s");
->>>>>>> 86e8be095939908c15da26339266974e6d5731b6
+
                                             
                                 ?>
 
