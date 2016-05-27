@@ -39,14 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                             $queryT = new Query;
                                             $queryT -> select(['exam_start'])
                                                     -> from('examTime')
-                                                    -> one();
+                                                    -> all();
 
                                             $commandT = $queryT->createCommand();
                                             $time = $commandT->queryAll();
+                                            $dataT = $time[0]['exam_start'];
 
-                                            $time = ExamTime::find()->select(['exam_start'])->one();
 
-                                            $dataT = $time;
+
                                             
                                                     
                                                     $val2 = $dataT;

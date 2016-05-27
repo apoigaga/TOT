@@ -3,6 +3,13 @@ body {
   background-image: 
     url(../images/bg2.jpg);
     height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .wrap {

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+
 /**
  * TrainerController implements the CRUD actions for Trainer model.
  */
@@ -51,6 +52,15 @@ class TrainerController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+
+        // $model = Trainer::findOne($id);
+        // if ($model === null) {
+        //     throw new NotFoundHttpException;
+        // }
+
+        // return $this->render('view', [
+        //     'model' => $model,
+        // ]);
     }
 
     /**
@@ -62,7 +72,17 @@ class TrainerController extends Controller
     {
         $model = new Trainer();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if(Trainer::find() 
+                    ->where(['trainer_icNO'=> $model->trainer_icNO])
+                    ->exists() ){
+
+                Yii::$app->session->setFlash('danger', "You already registered.");
+            
+                return $this->redirect(Yii::$app->request->referrer);
+
+            }else{
+            $model->save();}
             return $this->redirect(['view', 'id' => $model->trainer_id]);
         } else {
             return $this->render('create', [

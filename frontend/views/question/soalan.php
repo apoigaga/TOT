@@ -1,3 +1,4 @@
+
 <?php
 
 use yii\helpers\Html;
@@ -9,13 +10,9 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use kartik\widgets\Alert;
 
-
-
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\QuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-
 
 
 $trainer_id = Yii::$app->user->identity->id;

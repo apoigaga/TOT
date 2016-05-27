@@ -32,7 +32,6 @@ use frontend\models\Gender;
                             'inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control transparent']
                             ])->textInput()->input('trainer_icNO', ['placeholder' => "IC Number"])->label(false); ?>
 
-
     <?php echo $form->field($model, 'gender_ID')->dropDownList(ArrayHelper::map(backend\models\Gender::find()->all(),'gender_ID','gender_type'),
             ['prompt'=>'---Select Gender---'])->label(false); ?>
 
@@ -44,7 +43,7 @@ use frontend\models\Gender;
                                 'id' => 'address-input', 
                                 'placeholder' => 'Enter address...', 
                                 'rows' => 4
-                            ])->hint('Enter address in 4 lines. First 2 lines must contain the street details and next 2 lines the city, zip, and country detail.')->label(false); ?>
+                            ])->hint('Enter address in 4 lines. First 2 lines must contain the street details and next 2 lines the city, zip, and country detail.')->label(false); ?> 
 
 
     <?php echo $form->field($model, 'trainer_phoneNO', [
@@ -109,7 +108,7 @@ use frontend\models\Gender;
             'autoclose'=>true,
             'format' => 'yyyy-mm-dd',
         ],
-    ])->label(false);?>
+    ])->label(false);?> 
 
 
     <div class="form-group" align="center">

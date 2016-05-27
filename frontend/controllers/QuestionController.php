@@ -67,6 +67,8 @@ class QuestionController extends Controller
 
     public function actionSoalan()
     {
+
+        $this->layout = 'questionLayout';
         $trainer_id = Yii::$app->user->identity->id; 
 
         $query = new Query;
