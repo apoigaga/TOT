@@ -104,7 +104,7 @@ class QuestionController extends Controller
                      ->from('question')
                      ->where('section = "A"')
                      ->orderBy('rand()')
-                     ->limit(3);
+                     ->limit(35);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -118,7 +118,7 @@ class QuestionController extends Controller
                      ->from('question')
                      ->where('section = "C"')
                      ->orderBy('rand()')
-                     ->limit(1);
+                     ->limit(18);
             
             $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
@@ -278,7 +278,7 @@ public function actionBack()
                      ->from('question')
                      ->where('section = "A"')
                      ->orderBy('rand()')
-                     ->limit(3);
+                     ->limit(35);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -292,7 +292,7 @@ public function actionBack()
                      ->from('question')
                      ->where('section = "C"')
                      ->orderBy('rand()')
-                     ->limit(1);
+                     ->limit(18);
             
             $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
