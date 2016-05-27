@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m160511_211048_alterTabelGender extends Migration
+class m160523_030131_gender extends Migration
 {
     public function up()
     {
@@ -23,7 +23,7 @@ class m160511_211048_alterTabelGender extends Migration
 
     public function down()
     {
-        echo "m160511_211048_alterTabelGender cannot be reverted.\n";
+        echo "m160523_030131_gender cannot be reverted.\n";
 
         return false;
     }

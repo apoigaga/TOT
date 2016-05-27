@@ -143,6 +143,8 @@ class SiteController extends Controller
      */
     public function actionStartExam()
     {
+
+        
         return $this->render('startexam');
     }
 
