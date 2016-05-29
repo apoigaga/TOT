@@ -62,7 +62,7 @@ AppAsset::register($this);
 
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
-        ['label' => 'Signup', 'url' => ['/site/signup']],
+        // ['label' => 'Signup', 'url' => ['/site/signup']],
         ['label' => '', 'url' => ['/trainer/create']],
         ];
     } 
