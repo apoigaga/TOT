@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 use yii\helpers\Html;
@@ -38,19 +39,70 @@ use yii\grid\GridView;
             </div>
         </div>
     </div>
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+          
+            
+                    
+                  
+                   
+                     
+                   
+
+                  
+                   
+                  
+               
+                   
+
+               
                 
-                <!-- footer content -->
-            <footer>
-                <div class="">
-                    <p class="pull-right">Apoigaga <a></a>. |
-                        <span class="lead"> <i class="fa fa-paw"></i> CBIC</span>
-                    </p>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->    
+>>>>>>> dec5f0fa982c2724d64f5639f50bbe9599081c95
+                
+                 
+
+               
+                  
+                 
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
 
 
             
 
-</body>
+

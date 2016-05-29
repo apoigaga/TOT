@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 use yii\helpers\Html;
@@ -17,23 +18,48 @@ use yii\grid\GridView;
                     <p>
                         <?= Html::a('Create Question', ['create'], ['class' => 'btn btn-success']) ?>
                     </p>
+=======
+>>>>>>> dec5f0fa982c2724d64f5639f50bbe9599081c95
 
-                    <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
 
-                     'question_id',
-                    'question',
-                    'code',
-                    'section',
 
-                    ['class' => 'yii\grid\ActionColumn'],
-                    ],
-                    ]); ?>
 
-                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+             
+                   
+
+
+
+                  
+                 
+             
+          
+                   
+
+                 
+             
+          
+         
+
+                  
+                 
+                
+
+
             </div>
             </div>
         </div>
