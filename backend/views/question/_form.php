@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     
 
-    <?= $form->field($model, 'question')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'question')->textArea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'code')->textInput() ?>
 
