@@ -50,7 +50,7 @@ AppAsset::register($this);
 
     $menuItems[] = ['label'=>'Profile',
         'items'=>[
-            ['label'=>'Register', 'url' => ['/trainer/create']],
+            // ['label'=>'Register', 'url' => ['/trainer/create']],
             ['label'=>'Change Password', 'url' => ['/user/change_password']],
         ],
 

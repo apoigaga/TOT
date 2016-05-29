@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use kartik\dialog\Dialog;
 
 $this->title = 'Home';
 
@@ -41,27 +42,35 @@ $this->title = 'Training of Trainers';
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Welcome to <span>TOT</span></h1>
             <p class="animated fadeInRightBig">It's not what you teach but how you teach it</p>
-            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
+            
+            <?php echo Dialog::widget(); ?>
+            <button type="button" id="btn-confirm" class="btn btn-start animated fadeInUpBig">Start Exam</button>
+            
           </div>
         </div>
 
-        <div class="item" style="background-image: url(images/slider/2.jpg)">
+       <!--  <div class="item" style="background-image: url(images/slider/2.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Come Join <span>Us</span></h1>
             <p class="animated fadeInRightBig">Hard Work Pays Off</p>
-            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
+
+            <button type="button" id="btn-confirm" class="btn btn-start animated fadeInUpBig">Start Exam</button>
+
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/3.jpg)">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">We are <span>Trainer</span></h1>
             <p class="animated fadeInRightBig">Let Me Inspire You</p>
-            <?= Html::a('Start Exam', ['/question/soalan'], ['class'=>'btn btn-start animated fadeInUpBig']) ?>
-          </div>
+
+            <button type="button" id="btn-confirm" class="btn btn-start animated fadeInUpBig">Start Exam</button>
+
+          </div> -->
         </div>
       </div>
       <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
       <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+
 
       <!-- <a id="tohash" ><i class="fa fa-angle-down"></i></a> -->
 
@@ -72,6 +81,16 @@ $this->title = 'Training of Trainers';
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script>
+    $("#btn-confirm").on("click", function() {
+        krajeeDialog.confirm("This exam will require you to answer 60 question within 90 minutes. Goodluck!!!", function (result) {
+            if (result) {
+              // alert('Great! You accepted!');
+              document.location.href = '/TOT/frontend/web/index.php?r=question%2Fsoalan'
+            }
+        });
+    });
+  </script>
 
 </body>
 </html>

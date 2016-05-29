@@ -14,6 +14,7 @@ use frontend\models\Answer;
 use frontend\models\trainerAnswer;
 use yii\helpers\ArrayHelper;
 use frontend\models\Mark;
+use yii\filters\AccessControl;
 
 
 
@@ -27,6 +28,16 @@ class QuestionController extends Controller
  public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['soalan'],
+                'rules' => [
+                    [
+                        'allow'=>true,
+                        'roles'=>['@']
+                    ],
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
