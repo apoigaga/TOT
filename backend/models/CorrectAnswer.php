@@ -28,7 +28,7 @@ class CorrectAnswer extends \yii\db\ActiveRecord
     {
         return [
             [['correctAnswer_answer', 'question_id'], 'required'],
-            [['correctAnswer_answer', 'question_id'], 'string', 'max' => 50]
+            [['correctAnswer_answer', 'question_id'], 'string', 'max' => 500]
         ];
     }
 

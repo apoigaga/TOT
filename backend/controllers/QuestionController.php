@@ -104,21 +104,21 @@ class QuestionController extends Controller
                      ->from('question')
                      ->where('section = "A"')
                      ->orderBy('rand()')
-                     ->limit(35);
+                     ->limit(3);
 
             $queryB = new Query;
             $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "B"')
                      ->orderBy('rand()')
-                     ->limit(7);
+                     ->limit(1);
 
             $queryC = new Query;
             $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
                      ->from('question')
                      ->where('section = "C"')
                      ->orderBy('rand()')
-                     ->limit(18);
+                     ->limit(1);
             
             $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
             $data = $commandR->queryAll();
