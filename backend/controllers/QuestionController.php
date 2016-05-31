@@ -16,10 +16,6 @@ use yii\helpers\ArrayHelper;
 use backend\models\Mark;
 
 
-
-
-
-
 /**
  * QuestionController implements the CRUD actions for Question model.
  */

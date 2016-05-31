@@ -28,7 +28,7 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['answer', 'correct'], 'required'],
+            [['answer', 'correct'], 'string', 'max' => 500],
             [['question_id'], 'integer'],
             [['answer', 'correct'], 'string']
         ];

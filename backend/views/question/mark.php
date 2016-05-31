@@ -49,7 +49,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
 ?>
 
 
-<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="col-md-12 col-sm-12 col-xs-12" align="center">
     <div class="x_panel">
         <?php
         //KENA BETULKAN CALCULATION
@@ -59,43 +59,88 @@ $total_jawapan = $totjawapan[0]['totjaw'];
         if($totalAll < 50)
             {
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
-                echo "<h1>FAIL!</h1>";
+                echo "<h2>Please try again!!!</h2>";
+                echo "<h1>YOUR SCORE!</h1>";
+                
+               // echo "<h1>FAIL!</h1>";
 
                 //return Yii::$app->response->redirect(Url::to(['site\index']));
 
-                echo "<button><a href='/TOT/backend/web/index.php?r=question/back'>Answer Again</a></button>";
+               // echo "<button><a href='/TOT/backend/web/index.php?r=question/back'>Answer Again</a></button>";
 
             }else if(($totalAll <= 69) && ($totalAll >= 50))      {
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
+                echo "<h1>YOUR SCORE!</h1>";
+                
+                //echo "<h1>LOW COMPETENT!</h1>";
 
-                echo "<h1>LOW COMPETENT!</h1>";
-
-                echo number_format((float)$totalAll, 2, '.', ''); 
+               // echo number_format((float)$totalAll, 2, '.', ''); 
 
 
             }else if(($totalAll <=89 ) && ($totalAll >= 70)) {
 
-                echo "<h1>COMPETENT!</h1>";
+                echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
+                echo "<h1>YOUR SCORE!</h1>";
+                //echo "<h1>COMPETENT!</h1>";
 
-                echo number_format((float)$totalAll, 2, '.', ''); 
+                //echo number_format((float)$totalAll, 2, '.', ''); 
 
 
             }else if(($totalAll <=100 ) && ($totalAll >= 90)) {
 
-                echo "<h1>HIGHLY COMPETENT!</h1>";
+                echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
+                echo "<h1>YOUR SCORE!</h1>";
+                //echo "<h1>HIGHLY COMPETENT!</h1>";
 
-                echo number_format((float)$totalAll, 2, '.', ''); 
+                //echo number_format((float)$totalAll, 2, '.', ''); 
             }
 
 
         //echo $totalAll; 
 
-        echo "<h2>You answered</h2>";
+        //echo "<h2>You answered</h2>";
         echo "<h1>".$total_markah111."/".$total_jawapan."</h1>";
-        echo "<h2>Correct!</h2>";
+        //echo "<h2>Correct!</h2>";
+        echo "<h3>Minimum score to pass is 41/60</h3>";
+        
 
         ?>
+
+        <div class="panel panel-primary" style="width:500px" >
+    <div class="panel-heading"><b><h4>Score Competency Table</h4></b></div>
+    <div class="panel-body">
+        <table class = "table table-bordered table-hover">
+            <thead style ="background-color:pink">
+                <th>Score</th>
+                <th>Grade</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>51 - 60</td>
+                    <td>Highly Competent</td>
+                </tr>
+                <tr>
+                    <td>41 - 50</td>
+                    <td>Competent</td>
+                </tr>
+                <tr>
+                    <td>31 - 40</td>
+                    <td>Low Competent</td>
+                </tr>
+                <tr>
+                    <td>Below 30</td>
+                    <td>Fail*</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+    </div>
+</div>
+
+
 
