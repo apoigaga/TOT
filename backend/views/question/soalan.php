@@ -89,6 +89,33 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
+                            <body onload="f1()" >
+                            <form id="form1" runat="server">
+                            <div>
+                            <table width="100%" align="center">
+                            <tr>
+                            <td colspan="2">
+                            <!-- <h2>This is head part for showing timer and all other details</h2> -->
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                           <!--  <div id="starttime" align="center"></div> -->
+                            <!-- <div id="endtime" align="center"></div> -->
+                            <h2><div id="showtime" align="center"></div></h2>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                            </td>
+                            </tr>
+                            </table>
+
+                            </div>
+                            </form>
+
+
+
 
                             <!-- <div class="panel panel-default">
                               <div class="panel-body">
@@ -127,7 +154,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                     foreach ($soalan as $row) {
                                     echo "<div>";
                                         echo "<font size='5'>";
-                                        echo  $number.") ".$row['soalan']."<br/>";
+                                        echo nl2br ($number.") ".$row['soalan']."<br/>");
                                         echo "</font>";
                                         // echo $row['correct']."<br/>";
 
@@ -223,7 +250,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 
 
-        echo $dataT;       
+        echo "";       
 
     ?>
   
@@ -316,51 +343,8 @@ tim = setTimeout("f2()", 1000);
 }
 </script>
 </head>
-<body onload="f1()" >
-<form id="form1" runat="server">
-<div>
-<table width="100%" align="center">
-<tr>
-<td colspan="2">
-<h2>This is head part for showing timer and all other details</h2>
-</td>
-</tr>
-<tr>
-<td>
-<div id="starttime"></div>
-<div id="endtime"></div>
-<div id="showtime"></div>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-</tr>
-</table>
 
-</div>
-</form>
 </body>
 </html>
 
-
-
-
-
-   
-
-
-
-                
-
-            
-
-
-
-                                    
-                                   
-                                    
-
-
-                                                 
 

@@ -59,7 +59,9 @@ $total_jawapan = $totjawapan[0]['totjaw'];
         if($totalAll < 50)
             {
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h2>Please try again!!!</h2>";
                 echo "<h1>YOUR SCORE!</h1>";
+                
                // echo "<h1>FAIL!</h1>";
 
                 //return Yii::$app->response->redirect(Url::to(['site\index']));
@@ -69,8 +71,9 @@ $total_jawapan = $totjawapan[0]['totjaw'];
             }else if(($totalAll <= 69) && ($totalAll >= 50))      {
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
                 echo "<h1>YOUR SCORE!</h1>";
-                echo "<h2>Please try again</h2>";
+                
                 //echo "<h1>LOW COMPETENT!</h1>";
 
                // echo number_format((float)$totalAll, 2, '.', ''); 
@@ -79,6 +82,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
             }else if(($totalAll <=89 ) && ($totalAll >= 70)) {
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
                 echo "<h1>YOUR SCORE!</h1>";
                 //echo "<h1>COMPETENT!</h1>";
 
@@ -88,6 +92,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
             }else if(($totalAll <=100 ) && ($totalAll >= 90)) {
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
+                echo "<h3>Congratulations, You have passed the exam!</h3>";
                 echo "<h1>YOUR SCORE!</h1>";
                 //echo "<h1>HIGHLY COMPETENT!</h1>";
 
@@ -97,10 +102,10 @@ $total_jawapan = $totjawapan[0]['totjaw'];
 
         //echo $totalAll; 
 
-        echo "<h2>You answered</h2>";
+        //echo "<h2>You answered</h2>";
         echo "<h1>".$total_markah111."/".$total_jawapan."</h1>";
         //echo "<h2>Correct!</h2>";
-        echo "<h2>Minimum score to pass is  /60</h2>";
+        echo "<h3>Minimum score to pass is 41/60</h3>";
         
 
         ?>
@@ -115,19 +120,19 @@ $total_jawapan = $totjawapan[0]['totjaw'];
             </thead>
             <tbody>
                 <tr>
-                    <td>90 - 100</td>
+                    <td>51 - 60</td>
                     <td>Highly Competent</td>
                 </tr>
                 <tr>
-                    <td>70 - 89</td>
+                    <td>41 - 50</td>
                     <td>Competent</td>
                 </tr>
                 <tr>
-                    <td>50 - 69</td>
+                    <td>31 - 40</td>
                     <td>Low Competent</td>
                 </tr>
                 <tr>
-                    <td>Below 50</td>
+                    <td>Below 30</td>
                     <td>Fail*</td>
                 </tr>
             </tbody>

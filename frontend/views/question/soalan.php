@@ -86,6 +86,33 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
+                            <body onload="f1()" >
+                            <form id="form1" runat="server">
+                            <div>
+                            <table width="100%" align="center">
+                            <tr>
+                            <td colspan="2">
+                            <!-- <h2>This is head part for showing timer and all other details</h2> -->
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                           <!--  <div id="starttime" align="center"></div> -->
+                            <!-- <div id="endtime" align="center"></div> -->
+                            <h2><div id="showtime" align="center"></div></h2>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                            </td>
+                            </tr>
+                            </table>
+
+                            </div>
+                            </form>
+
+
+     
 
                             <!-- <div class="panel panel-default">
                               <div class="panel-body">
@@ -98,14 +125,12 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                             if($total_soalan != $total_jawapan)
                             {
-                        
                                 echo "<center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center>";
-                                echo '<br>';
-                                $this->title = 'Online Exam';
+                                $this->title = 'Questions';
 
                             }else{
                                 
-                                 header("Location: /TOT/frontend/web/index.php?r=question%2Fmark"); 
+                                 header("Location: /TOT/backend/web/index.php?r=question%2Fmark"); 
                                 exit();                                        
 
                             }
@@ -117,7 +142,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                                     <?php $form = ActiveForm::begin([
-                                        'action' => '/TOT/frontend/web/index.php?r=question/soalan-seterusnya'
+                                        'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
 
                                         ]);
 
@@ -125,8 +150,8 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                                     foreach ($soalan as $row) {
                                     echo "<div>";
-                                        echo "<font size='4'>";
-                                        echo  $number.") ".$row['soalan']."<br/>";
+                                        echo "<font size='5'>";
+                                        echo nl2br ($number.") ".$row['soalan']."<br/>");
                                         echo "</font>";
                                         // echo $row['correct']."<br/>";
 
@@ -163,17 +188,20 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                     $number++;
                                     
                                     }
-                                    
+                                    echo "<br>";
                                     echo "<div class='pull-right'>";
                                     if($total_soalan != $total_jawapan)
                                     {
+                                        echo "<br>";
                                         echo "<input type='submit' name='Submit' value='Finish' class='btn btn-success' /> ";
-                                    
+                                        echo "<br>";
+
                                     }else{
                                                 
                                     }
 
                                     echo "</div>";
+                                    echo "<br>";
 
                                     
                                     if($total_soalan != $total_jawapan)
@@ -219,7 +247,10 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 
 
-       // echo $dataT;       
+        //echo $dataT;   
+        echo ".......";  
+        echo "<br><br>"; 
+        echo ".......";     
 
     ?>
   
@@ -252,7 +283,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
             if(diff < 0)
             {
-                window.location.href = "/TOT/frontend/web/index.php?r=question%2Fmark";
+                window.location.href = "/TOT/backend/web/index.php?r=question%2Fmark";
             }
 
 
@@ -266,27 +297,53 @@ $total_markah111 = $totmarkah[0]['totmark'];
         document.getElementById("demo").innerHTML = x;
     }
     </script>
+
+
+        
+
+    
    
 </body>
 
 </html>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+<script language ="javascript" >
+var tim;
+var min = 90;
+var sec = 60;
+var f = new Date();
+function f1() {
+f2();
+document.getElementById("starttime").innerHTML = "Your started your Exam at " + f.getHours() + ":" + f.getMinutes();
 
+}
+function f2() {
+if (parseInt(sec) > 0) {
+sec = parseInt(sec) - 1;
+document.getElementById("showtime").innerHTML = "Your Left Time is :"+min+" Minutes ," + sec+" Seconds";
+tim = setTimeout("f2()", 1000);
+}
+else {
+if (parseInt(sec) == 0) {
+min = parseInt(min) - 1;
+if (parseInt(min) == 0) {
+clearTimeout(tim);
+location.href = "default5.aspx";
+}
+else {
+sec = 60;
+document.getElementById("showtime").innerHTML = "Your Left Time is :" + min + " Minutes ," + sec + " Seconds";
+tim = setTimeout("f2()", 1000);
+}
+}
+}
+}
+</script>
+</head>
 
-   
-
-
-
-                
-
-            
-
-
-
-                                    
-                                   
-                                    
-
-
-                                                 
+</body>
+</html>
 
