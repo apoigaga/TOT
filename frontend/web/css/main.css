@@ -151,7 +151,8 @@ section {
 }
 
 .caption .btn-start {
-  color: #fff;
+  /*color: #fff;*/
+  color: #028fcc;
   font-size: 14px;
   font-weight: 600;
   padding:14px 40px;

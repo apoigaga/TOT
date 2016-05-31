@@ -4,13 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "hash": "a8e0f807a8cc234f61f69b3f47ce94d5",
-    "content-hash": "45f1813988bc97066cc3192fdd171917",
-=======
-    "hash": "7782079f6acbfc2013b390a9ccd85454",
-    "content-hash": "2418dec57a9b9bc8033bd9f6537b73c7",
->>>>>>> 86e8be095939908c15da26339266974e6d5731b6
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -50,6 +43,56 @@
                 "MIT"
             ],
             "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "keywords": [
+                "css",
+                "framework",
+                "front-end",
+                "js",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap3-dialog",
+            "version": "v1.35.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nakupanda/bootstrap3-dialog.git",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.1.0",
+                "bower-asset/jquery": ">=1.9.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/less/bootstrap-dialog.less",
+                    "dist/css/bootstrap-dialog.min.css",
+                    "dist/js/bootstrap-dialog.min.js"
+                ],
+                "bower-asset-ignore": [
+                    "source",
+                    "spec",
+                    ".bowerrc",
+                    ".gitignore",
+                    ".jshintignore",
+                    ".jshintrc",
+                    "bower.json",
+                    "gruntfile.js",
+                    "package.json",
+                    "README.md"
+                ]
+            },
+            "description": "Make use of Bootstrap Modal more monkey-friendly. http://nakupanda.github.io/bootstrap3-dialog/",
             "keywords": [
                 "css",
                 "framework",
@@ -530,6 +573,58 @@
             "time": "2015-09-12 20:17:42"
         },
         {
+            "name": "kartik-v/yii2-dialog",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-dialog.git",
+                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/270b96ee983b9ec2264ca66c0d9de2354fb10892",
+                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap3-dialog": "~1.34",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\dialog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An asset bundle for bootstrap3-dialog for Yii 2.0 framework.",
+            "homepage": "https://github.com/kartik-v/yii2-dialog",
+            "keywords": [
+                "alert",
+                "bootstrap",
+                "dialog",
+                "extension",
+                "modal",
+                "yii2"
+            ],
+            "time": "2016-04-27 19:12:29"
+        },
+        {
             "name": "kartik-v/yii2-dropdown-x",
             "version": "v1.2.0",
             "source": {
@@ -738,11 +833,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/kartik-v/yii2-password/zipball/fb5634389a1eaa87c3f321761add3fd46ce7677b",
-<<<<<<< HEAD
-                "reference": "3d1577bf5fd36991a56a8d8b8b459c434f418df1",
-=======
                 "reference": "fb5634389a1eaa87c3f321761add3fd46ce7677b",
->>>>>>> 86e8be095939908c15da26339266974e6d5731b6
                 "shasum": ""
             },
             "require": {
@@ -2454,12 +2545,10 @@
         "kartik-v/yii2-widgets": 20,
         "kartik-v/yii2-password": 20,
         "kartik-v/yii2-label-inplace": 20,
-<<<<<<< HEAD
         "kartik-v/yii2-popover-x": 20,
-        "kartik-v/yii2-nav-x": 20
-=======
-        "kartik-v/yii2-widget-activeform": 20
->>>>>>> 86e8be095939908c15da26339266974e6d5731b6
+        "kartik-v/yii2-nav-x": 20,
+        "kartik-v/yii2-widget-activeform": 20,
+        "kartik-v/yii2-dialog": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
