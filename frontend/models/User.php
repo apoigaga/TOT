@@ -21,6 +21,9 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    // public $currentPassword;
+    // public $newPassword;
+    // public $newPasswordConfirm;
 
     /**
      * @inheritdoc
@@ -43,6 +46,14 @@ class User extends \yii\db\ActiveRecord
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
             [['email'], 'unique'],
+
+            [['newPassword','currentPassword','newPasswordConfirm'], 'required'],
+            [['currentPassword'],'validateCurrentPassword'],
+            [['newPassword'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'username'],
+
+            [['newPassword','newPasswordConfirm'],'string', 'min'=>5],
+            [['newPassword','newPasswordConfirm'], 'filter','filter'=>'trim'],
+            [['newPasswordConfirm'],'compare','compareAttribute' => 'newPassword', 'message'=>'password do not match'],
         ];
     }
 
@@ -63,6 +74,10 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'trainer_id' => 'Trainer ID',
             'ic_number' => 'Ic Number',
+            'newPassword' => 'New Password',
+            'currentPassword' => 'Current Password',
+            'newPasswordConfirm' => 'New Password Confirm',
+
         ];
     }
 
@@ -73,6 +88,22 @@ class User extends \yii\db\ActiveRecord
     public function getTrainer(){
         return $this->hasOne(Trainer::className(), ['trainer_id' => '_id']);
     }
+
+
+    public function validateCurrentPassword()
+    {
+        if(!$this->verifyPassword($this->currentPassword)){
+            $this->addError("currentPassword","Current password incorrect");
+        }
+    }
+
+    public function verifyPassword($password)
+    {
+        $dbpassword = static::findOne(['ic_number'=>Yii::$app->user->identity->ic_number, 'status' => self::STATUS_ACTIVE])->password_hash;
+
+        return Yii::$app->security->validatePassword($password,$dbpassword);
+    }
+
 
 }
 

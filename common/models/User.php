@@ -35,6 +35,8 @@ class User extends ActiveRecord implements IdentityInterface
     public $newPassword;
     public $newPasswordConfirm;
 
+
+
     /**
      * @inheritdoc
      */
@@ -61,30 +63,9 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-
-            [['newPassword','currentPassword','newPasswordConfirm'], 'required'],
-            [['currentPassword'],'validateCurrentPassword'],
-            [['newPassword'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'username'],
-
-            [['newPassword','newPasswordConfirm'],'string', 'min'=>5],
-            [['newPassword','newPasswordConfirm'], 'filter','filter'=>'trim'],
-            [['newPasswordConfirm'],'compare','compareAttribute' => 'newPassword', 'message'=>'password do not match'],
+            
 
         ];
-    }
-
-    public function validateCurrentPassword()
-    {
-        if(!$this->verifyPassword($this->currentPassword)){
-            $this->addError("currentPassword","Current password incorrect");
-        }
-    }
-
-    public function verifyPassword($password)
-    {
-        $dbpassword = static::findOne(['ic_number'=>Yii::$app->user->identity->ic_number, 'status' => self::STATUS_ACTIVE])->password_hash;
-
-        return Yii::$app->security->validatePassword($password,$dbpassword);
     }
 
     /**
