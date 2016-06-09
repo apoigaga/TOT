@@ -58,7 +58,9 @@ $total_markah111 = $totmarkah[0]['totmark'];
 <span id='et' ></span></p>
 
 <p>bal time
-<span id='bt' ></span></p>    -->                     
+<span id='bt' ></span></p>       -->     
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,125 +117,102 @@ $total_markah111 = $totmarkah[0]['totmark'];
                             </form>
 
 
+<table border="0" align="center">
+    <tr>
+    <th><center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center></th>
+    </tr>
+</table>
+<div class="scroll">
+    <table>
+        <tr><?php $form = ActiveForm::begin([
+            'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya' ]);
+                    
+                $number = $numbersoalan;
 
+                foreach ($soalan as $row) {
+                echo "<div>";
+                    echo "<font size='5'>";
+                    echo nl2br ($number.") ".$row['soalan']."<br/>");
+                    echo "</font>";
+                    // echo $row['correct']."<br/>";
 
-                            <!-- <div class="panel panel-default">
-                              <div class="panel-body">
-                                Basic panel example
-                              </div>
-                            </div>
- -->
-                            <!-- <iframe src="http://localhost/TOT/backend/web/index.php?r=question%2Fsoalan" width="100%" height="650" frameborder="0" scrolling="yes"></iframe> -->
-                            <?php 
+                    $soalan_id = $row['id'];
+                    echo "<input type='hidden' value='".$soalan_id."' name='question_id[".$number."]'>";
+                    $query = new Query;
+                    $query -> select(['answer.answer as answer','answer.answer_id as answerid'])
+                           -> from('question','answer')
+                           -> innerJoin('answer','answer.question_id = question.question_id')
+                           ->where('answer.question_id = "'.$soalan_id.'" ')
+                           ->orderBy(' rand()')
+                           ->all();
 
-                            if($total_soalan != $total_jawapan)
-                            {
-                                echo "<center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center>";
-                                $this->title = 'Questions';
-
-                            }else{
-                                
-                                 header("Location: /TOT/backend/web/index.php?r=question%2Fmark"); 
-                                exit();                                        
-
-                            }
-
-                            ?>
+                           $command = $query->createCommand();
+                           $xData = $command->queryAll();
+                        
                             
-                                 <div class="question-index">
-                                    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-                                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                           foreach ($xData as $ans) 
+                           {
 
-                                    <?php $form = ActiveForm::begin([
-                                        'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
+                            echo "<font size='3'>";
+                            echo "<ul>";
+                            echo "<label>";
+                            echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];
+                            echo "</label>";
+                            echo "</ul>";
+                            echo "</font>";
+                            
 
-                                        ]);
+                            } 
+                                                                          
+                  
+                echo "</div><br/>";                
+                $number++;
+                
+                }
+                echo "<br>";
+                echo "<div class='pull-right'>";
+                if($total_soalan != $total_jawapan)
+                {
+                    echo "<br>";
+                    echo "<input type='submit' name='Submit' value='Finish' class='btn btn-success' /> ";
+                    echo "<br>";
 
-                                    $number = $numbersoalan;
+                }else{
+                            
+                }
 
-                                    foreach ($soalan as $row) {
-                                    echo "<div>";
-                                        echo "<font size='5'>";
-                                        echo nl2br ($number.") ".$row['soalan']."<br/>");
-                                        echo "</font>";
-                                        // echo $row['correct']."<br/>";
+                echo "</div>";
+                echo "<br>";
 
-                                        $soalan_id = $row['id'];
-                                        echo "<input type='hidden' value='".$soalan_id."' name='question_id[".$number."]'>";
-                                        $query = new Query;
-                                        $query -> select(['answer.answer as answer','answer.answer_id as answerid'])
-                                               -> from('question','answer')
-                                               -> innerJoin('answer','answer.question_id = question.question_id')
-                                               ->where('answer.question_id = "'.$soalan_id.'" ')
-                                               ->orderBy(' rand()')
-                                               ->all();
+                
+                if($total_soalan != $total_jawapan)
+                {
 
-                                               $command = $query->createCommand();
-                                               $xData = $command->queryAll();
-                                            
-                                                
-                                               foreach ($xData as $ans) 
-                                               {
+                }else{
 
-                                                echo "<font size='3'>";
-                                                echo "<ul>";
-                                                echo "<label>";
-                                                echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];
-                                                echo "</label>";
-                                                echo "</ul>";
-                                                echo "</font>";
-                                                
+                    $connectionsavemark= Yii::$app->db;
+                    $connectionsavemark->createCommand("
+                                        INSERT INTO mark
+                                        (mark_total, trainer_id)
+                                        VALUES 
+                                        ('".$total_markah111."', '".$trainer_id."') 
+                                        ")->execute();
 
-                                                } 
-                                                                                              
-                                      
-                                    echo "</div><br/>";                
-                                    $number++;
-                                    
-                                    }
-                                    echo "<br>";
-                                    echo "<div class='pull-right'>";
-                                    if($total_soalan != $total_jawapan)
-                                    {
-                                        echo "<br>";
-                                        echo "<input type='submit' name='Submit' value='Finish' class='btn btn-success' /> ";
-                                        echo "<br>";
+                    // echo "<div class='jumbotron' >";
 
-                                    }else{
-                                                
-                                    }
+                    // echo "<h2>You answered</h2>";
+                    // echo "<h1>".$total_markah111."/".$total_soalan."</h1>";
+                    // echo "<h2>Correct!</h2>";
 
-                                    echo "</div>";
-                                    echo "<br>";
-
-                                    
-                                    if($total_soalan != $total_jawapan)
-                                    {
-
-                                    }else{
-
-                                        $connectionsavemark= Yii::$app->db;
-                                        $connectionsavemark->createCommand("
-                                                            INSERT INTO mark
-                                                            (mark_total, trainer_id)
-                                                            VALUES 
-                                                            ('".$total_markah111."', '".$trainer_id."') 
-                                                            ")->execute();
-
-                                        // echo "<div class='jumbotron' >";
-
-                                        // echo "<h2>You answered</h2>";
-                                        // echo "<h1>".$total_markah111."/".$total_soalan."</h1>";
-                                        // echo "<h2>Correct!</h2>";
-
-                                        // echo "</div>";
-                                    }
-                                     ActiveForm::end();
-                                    ?>
-                                     
-                                    </div>
-                             </div>
-                        </div>
+                    // echo "</div>";
+                }
+                 ActiveForm::end();
+                ?>
+                 
+                </div>
+         </div>
+    </div>
+    
         </div>
     </div>
 
@@ -252,7 +231,15 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
         echo "";       
 
-    ?>
+    ?></tr>
+    </table>
+</div>
+
+<!-- //paste kt sini -->
+
+
+
+                           
   
              
     <script type="text/javascript"> 

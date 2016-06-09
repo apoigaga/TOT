@@ -6494,3 +6494,12 @@ ul.notifications {
     float: right;
     opacity: 1;
 }
+
+
+.table {
+    width: 500px;
+}
+
+.scroll {
+    max-height: 400px;
+    overflow: auto;
