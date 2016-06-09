@@ -48,13 +48,13 @@ AppAsset::register($this);
     ];
 
 
-    $menuItems[] = ['label'=>'Profile',
-        'items'=>[
-            // ['label'=>'Register', 'url' => ['/trainer/create']],
-            ['label'=>'Change Password', 'url' => ['/user/change_password']],
-        ],
+    // $menuItems[] = ['label'=>'Profile',
+    //     'items'=>[
+    //         // ['label'=>'Register', 'url' => ['/trainer/create']],
+    //         ['label'=>'Change Password', 'url' => ['/user/change_password']],
+    //     ],
 
-    ];
+    // ];
         
 
     if (Yii::$app->user->isGuest) {
@@ -62,6 +62,7 @@ AppAsset::register($this);
 
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
+        // ['label' => 'Admin Login', 'url' => ['/site/login']],
         // ['label' => 'Signup', 'url' => ['/site/signup']],
         ['label' => '', 'url' => ['/trainer/create']],
         ];
