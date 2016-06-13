@@ -16,10 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
 
+     $trainer_id = Yii::$app->user->identity->id;
+
     $queryu = new Query;
-    $queryu -> select(['trainer.trainer_id AS id', 'trainer.trainer_name AS name','mark.mark_total AS mark'])
-            -> from('trainer', 'mark')
-            -> innerJoin('mark','mark.trainer_id = trainer.trainer_id')
+    $queryu -> select(['user.id AS id', 'user.username AS name','mark.mark_total AS mark'])
+            -> from('user', 'mark')
+            -> innerJoin('mark','mark.trainer_id = user.id')
             //-> where('trainer.trainer_id AS id = mark.trainer_id')
             -> all();
     $commandu = $queryu->createCommand();
@@ -66,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th></th>
                         <th>Trainer Name</th>
                         <th>Correct Answer</th>
-                        <th>Trainer Marks</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -79,8 +81,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $row['id'] ?></td>
                         <td></td>
                         <td><?= $row['name'] ?></td>
-                        <td><?= $row['mark']."/".$total_soalan ?></td>
-                        <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td>
+                        <td><?= $row['mark']."/60" ?></td>
+                        <!-- <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td> -->
                     </tr>
                     <?php endforeach; ?>
                     
