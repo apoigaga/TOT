@@ -3,11 +3,13 @@
 namespace backend\controllers;
 
 use Yii;
+use mPDF;
 use backend\models\Mark;
 use backend\models\MarkSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
 
 /**
  * MarkController implements the CRUD actions for Mark model.
@@ -107,6 +109,21 @@ class MarkController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeletedata($id)
+    {
+        (new Query)
+        ->createCommand()
+        ->delete('mark', ['trainer_id' => $id])
+        ->execute();
+
+        (new Query)
+        ->createCommand()
+        ->delete('trainerAnswer', ['trainer_id' => $id])
+        ->execute();
+
+        return $this->redirect(['index']);
+    }
+
     /**
      * Finds the Mark model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -121,5 +138,47 @@ class MarkController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+
+    public function actionCreateMPDF()
+    {
+        $mpdf=new mPDF();
+        $mpdf->WriteHTML($this->renderPartial('mpdf'));
+        $mpdf->Output();
+        exit;
+    }
+
+
+    public function actionSamplepdf() 
+    {
+          $mpdf = new mPDF;
+        $mpdf->WriteHTML($this->renderPartial('pdf'));
+          $mpdf->Output();
+          exit;
+    }
+
+
+    public function actionForceDownloadPdf()
+    {
+        $mpdf=new mPDF();
+        $mpdf->WriteHTML($this->renderPartial('mpdf'));
+        $mpdf->Output('MyPDF.pdf', 'D');
+        exit;
+    }
+
+
+    public function actionPdf()
+    {        
+        $mpdf = new mPDF;
+        $mpdf->WriteHTML($this->renderPartial('pdf'));
+          $mpdf->Output();
+          exit;
+        // $mpdf=new mPDF('c', 'A4-P');
+        // $mpdf->WriteHTML($this->renderPartial('pdf', [
+        //     ]));
+        // $mpdf->Output();
+        // exit;
     }
 }

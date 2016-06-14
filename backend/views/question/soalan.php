@@ -131,7 +131,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
                 foreach ($soalan as $row) {
                 echo "<div>";
-                    echo "<font size='5'>";
+                    echo "<font  face = 'arial' size='5'>";
                     echo nl2br ($number.") ".$row['soalan']."<br/>");
                     echo "</font>";
                     // echo $row['correct']."<br/>";
@@ -152,7 +152,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
                            foreach ($xData as $ans) 
                            {
 
-                            echo "<font size='3'>";
+                            echo "<font  face = 'arial' size='3'>";
                             echo "<ul>";
                             echo "<label>";
                             echo "<input type='radio' id='myRadio' name='trainerAnswer[".$number."]' value='".$ans['answerid']."' required>".$ans['answer'];

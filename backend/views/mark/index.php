@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
      $trainer_id = Yii::$app->user->identity->id;
 
     $queryu = new Query;
-    $queryu -> select(['user.id AS id', 'user.username AS name','mark.mark_total AS mark'])
+    $queryu -> select(['user.id AS id', 'user.ic_number AS ic','user.username AS name','mark.mark_total AS mark'])
             -> from('user', 'mark')
             -> innerJoin('mark','mark.trainer_id = user.id')
             //-> where('trainer.trainer_id AS id = mark.trainer_id')
@@ -48,6 +48,28 @@ $this->params['breadcrumbs'][] = $this->title;
     $totsoalan = $commands->queryAll();
     $total_soalan = $totsoalan[0]['totq'];
 
+    /************drop mark and traineranswer where they are failed**************/
+    // $queryd = new Query;
+    // $queryd -> delete('trainer_id',['id' =])
+    //         -> from('mark','trainerAnswer')
+    //         -> where('trainer_id = "'.$trainer_id.'" ')
+    //         ->all();
+    // $commandd = $queryd->createCommand();
+    // $datad = $commandd->queryAll();
+
+
+    /************total answer queston**************/
+    // $queryt = new Query;
+    // $queryt -> select(['count(trainerAnswer_answer) AS ans'])
+    //         -> from('trainerAnswer')
+    //         -> where('trainerAnswer_answer is null')
+    //         -> andwhere('trainer_id = "'.$trainer_id.'" ')
+    //         -> all();
+    // $commandt = $queryt->createCommand();
+    // $totjwpn = $commandt->queryAll();
+    // $total_answered = $totjwpn[0]['ans'];
+
+
   //  echo $total_markah111; 
    // echo $totalAll=($total_markah111/$total_soalan*100);
 
@@ -65,10 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <th>#</th>
                         <th>Trainer ID</th>
-                        <th></th>
+                        <th>IC Number</th>
                         <th>Trainer Name</th>
-                        <th>Correct Answer</th>
-                        
+                        <th>Mark</th>  
+                        <th>action</th>
+                                                                              
                     </tr>
                 </thead>
                 <tbody>
@@ -79,9 +102,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <th scope="row"><?=  $numbersoalan++; ?></th>
                         <td><?= $row['id'] ?></td>
-                        <td></td>
+                        <td><?= $row['ic'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><?= $row['mark']."/60" ?></td>
+                        <td><?= $row['mark']."/60" ?></td> 
+                        <td><?= Html::a('Delete', ['deletedata', 'id' => $row['id']], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+        </td>
                         <!-- <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td> -->
                     </tr>
                     <?php endforeach; ?>
@@ -91,6 +122,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div><br><br><br><br><br><br><br><br><br>
 </div>
+
+<?= Html::a('<span class="glyphicon glyphicon-file" aria-hidden="true"></span>', ['pdf'], [
+            'class' => 'btn btn-info',
+            'target'=>'_blank', 
+            'data-toggle'=>'tooltip', 
+            'title'=>'Will open the generated PDF file in a new window'
+        ]); ?>
 
 
 

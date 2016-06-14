@@ -29,7 +29,8 @@
         "kartik-v/yii2-popover-x": "@dev",
         "kartik-v/yii2-nav-x": "@dev",
         "kartik-v/yii2-widget-activeform": "@dev",
-        "kartik-v/yii2-dialog": "@dev"
+        "kartik-v/yii2-dialog": "@dev",
+        "mpdf/mpdf":"*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
