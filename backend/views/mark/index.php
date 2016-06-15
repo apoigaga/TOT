@@ -6,6 +6,9 @@ use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\db\Command;
 use backend\models\Trainer;
+use yii\data\ActiveDataProvider;
+use backend\models\Mark;
+use yii\data\Sort;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\MarkSearch */
@@ -75,22 +78,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="col-md-6 col-sm-6 col-xs-12" >
+    <h1>Marks</h1>
     <div class="x_panel" >
         <div class="x_title" >
-            <h2>Marks</h2>
+            <?= Html::a('<span class="glyphicon glyphicon-print" aria-hidden="true"> Print</span>', ['pdf'], [
+            'class' => 'btn btn-success',
+            'target'=>'_blank', 
+            'data-toggle'=>'tooltip', 
+            'title'=>'Will open the generated PDF file in a new window'
+        ]); ?>
             <div class="clearfix" ></div>
         </div>
         <div class="x_content" >
-            <table class="table table-hover" >
+            <table class="table table-hover " style="width:100%">
                 <thead >
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Trainer ID</th>
                         <th>IC Number</th>
                         <th>Trainer Name</th>
                         <th>Mark</th>  
-                        <th>action</th>
+                        <th>Action</th>
                                                                               
                     </tr>
                 </thead>
@@ -106,29 +114,42 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $row['name'] ?></td>
                         <td><?= $row['mark']."/60" ?></td> 
                         <td><?= Html::a('Delete', ['deletedata', 'id' => $row['id']], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-        </td>
+                            'class' => 'btn btn-danger btn-xs',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                            ],
+                        ]) ?></td>
                         <!-- <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td> -->
                     </tr>
                     <?php endforeach; ?>
                     
+                    
                 </tbody>
             </table>
         </div>
-    </div><br><br><br><br><br><br><br><br><br>
+    </div>
 </div>
 
-<?= Html::a('<span class="glyphicon glyphicon-file" aria-hidden="true"></span>', ['pdf'], [
-            'class' => 'btn btn-info',
-            'target'=>'_blank', 
-            'data-toggle'=>'tooltip', 
-            'title'=>'Will open the generated PDF file in a new window'
-        ]); ?>
+
+
+<!--  <?=
+  GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+
+                            'mark_id',
+                            'mark_total',
+                            'trainer_id',
+                            'trainerAnswer_id',
+
+                            ['class' => 'yii\grid\ActionColumn'],
+                        ],
+                    ]); 
+?>
+ -->
 
 
 

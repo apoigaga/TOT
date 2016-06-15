@@ -97,7 +97,7 @@ use yii\data\ActiveDataProvider;
             <table class="table table-hover" >
                 <thead >
                     <tr>
-                        <th class = "td">#</th>
+                        <th class = "td">No</th>
                         <th class = "td">Trainer ID</th> 
                         <th class = "td">Ic Number</th>                      
                         <th class = "td">Trainer Name</th>
@@ -118,13 +118,6 @@ use yii\data\ActiveDataProvider;
                         <td class = "td" align="center"><?= $row['mark']."/60" ?></td>
                         <!-- <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td> -->
                     </tr>
-                     <?php
-                        $dataProvider = new ActiveDataProvider([
-    'query' => $datau,
-    'sort' => ['defaultOrder' => ['mark' => SORT_ASC]]
-    ]); 
-
-                    ?>
                     <?php endforeach; ?>
                    
                     
@@ -133,7 +126,3 @@ use yii\data\ActiveDataProvider;
         </div>
     </div><br><br><br><br><br><br><br><br><br>
 </div>
-
-
-
-

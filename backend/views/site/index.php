@@ -7,9 +7,7 @@ use backend\models\TrainerAnswer;
 use yii\db\Query;
 
 $this->title = 'Home';
-
 ?>
-
 
     <div class="container body">
         <div class="main_container">

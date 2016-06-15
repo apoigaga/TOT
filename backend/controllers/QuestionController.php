@@ -39,12 +39,14 @@ class QuestionController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new QuestionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $searchModel = new QuestionSearch();
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $question = Question::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'question' => $question,
+            // 'searchModel' => $searchModel,
+            // 'dataProvider' => $dataProvider,
         ]);
     }
 
