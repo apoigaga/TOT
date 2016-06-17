@@ -18,7 +18,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'code')->textInput() ?>
 
-    <?= $form->field($model, 'section')->textInput() ?>
+    <?= $form->field($model, 'section')->dropDownList(['A' => 'A', 'B' => 'B', 'C' => 'C'],['prompt' => '']) ?>
+
+    <?= $form->field($model, 'level')->dropDownList(['easy' => 'Easy', 'moderate' => 'Moderate', 'difficult' => 'Difficult'],['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

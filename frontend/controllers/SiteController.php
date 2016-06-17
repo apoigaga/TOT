@@ -74,6 +74,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+         if (\Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
+        else {
+            $role = Yii::$app->user->identity->role;
+            
+            switch($role){
+                case '1' :
+                    return $this->redirect('/TOT/backend/web/index.php?r=layouts%2Fadmin');// view for super user
+                break;
+                case '0':
+                return $this->render('index');
+                break;
+                
+            }
+        }
+
         return $this->render('index');
     }
 

@@ -7,9 +7,6 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
-
-
-
 /**
  * Site controller
  */
@@ -59,10 +56,27 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
-        $question = Question::find()->all();
+        // return $this->render('index');
+        // $question = Question::find()->all();
 
-        return $this->render('question1',['question'=>$question]);
+        if (\Yii::$app->user->isGuest){
+            return $this->redirect(['site/login']);
+        }
+        else {
+            $role = Yii::$app->user->identity->role;
+            
+            switch($role){
+                case '1' :
+                    return $this->render('index');// view for super user
+                break;
+                case '0':
+                return $this->redirect('/TOT/frontend/web/index.php');
+                break;
+                
+            }
+        }
+
+       // return $this->render('question1',['question'=>$question]);
 
         
     }
@@ -105,5 +119,5 @@ class SiteController extends Controller
         return $this->render('userAnswer');
     }
 
-   
+
 }
