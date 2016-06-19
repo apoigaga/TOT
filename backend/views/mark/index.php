@@ -6,6 +6,9 @@ use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\db\Command;
 use backend\models\Trainer;
+use yii\data\ActiveDataProvider;
+use backend\models\Mark;
+use yii\data\Sort;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\MarkSearch */
@@ -16,10 +19,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
 
+     $trainer_id = Yii::$app->user->identity->id;
+
     $queryu = new Query;
-    $queryu -> select(['trainer.trainer_id AS id', 'trainer.trainer_name AS name','mark.mark_total AS mark'])
-            -> from('trainer', 'mark')
-            -> innerJoin('mark','mark.trainer_id = trainer.trainer_id')
+    $queryu -> select(['user.id AS id', 'user.ic_number AS ic','user.username AS name','mark.mark_total AS mark'])
+            -> from('user', 'mark')
+            -> innerJoin('mark','mark.trainer_id = user.id')
             //-> where('trainer.trainer_id AS id = mark.trainer_id')
             -> all();
     $commandu = $queryu->createCommand();
@@ -46,27 +51,55 @@ $this->params['breadcrumbs'][] = $this->title;
     $totsoalan = $commands->queryAll();
     $total_soalan = $totsoalan[0]['totq'];
 
+    /************drop mark and traineranswer where they are failed**************/
+    // $queryd = new Query;
+    // $queryd -> delete('trainer_id',['id' =])
+    //         -> from('mark','trainerAnswer')
+    //         -> where('trainer_id = "'.$trainer_id.'" ')
+    //         ->all();
+    // $commandd = $queryd->createCommand();
+    // $datad = $commandd->queryAll();
+
+
+    /************total answer queston**************/
+    // $queryt = new Query;
+    // $queryt -> select(['count(trainerAnswer_answer) AS ans'])
+    //         -> from('trainerAnswer')
+    //         -> where('trainerAnswer_answer is null')
+    //         -> andwhere('trainer_id = "'.$trainer_id.'" ')
+    //         -> all();
+    // $commandt = $queryt->createCommand();
+    // $totjwpn = $commandt->queryAll();
+    // $total_answered = $totjwpn[0]['ans'];
+
+
   //  echo $total_markah111; 
    // echo $totalAll=($total_markah111/$total_soalan*100);
 
 ?>
 
-<div class="col-md-6 col-sm-6 col-xs-12" >
+    <h1>Marks</h1>
     <div class="x_panel" >
         <div class="x_title" >
-            <h2>Marks</h2>
+            <?= Html::a('<span class="glyphicon glyphicon-print" aria-hidden="true"> Print</span>', ['pdf'], [
+            'class' => 'btn btn-success',
+            'target'=>'_blank', 
+            'data-toggle'=>'tooltip', 
+            'title'=>'Will open the generated PDF file in a new window'
+        ]); ?>
             <div class="clearfix" ></div>
         </div>
         <div class="x_content" >
-            <table class="table table-hover" >
+            <table class="table table-hover " style="width:100%">
                 <thead >
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Trainer ID</th>
-                        <th></th>
+                        <th>IC Number</th>
                         <th>Trainer Name</th>
-                        <th>Correct Answer</th>
-                        <th>Trainer Marks</th>
+                        <th>Mark</th>  
+                        <th>Action</th>
+                                                                              
                     </tr>
                 </thead>
                 <tbody>
@@ -77,18 +110,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <th scope="row"><?=  $numbersoalan++; ?></th>
                         <td><?= $row['id'] ?></td>
-                        <td></td>
+                        <td><?= $row['ic'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><?= $row['mark']."/".$total_soalan ?></td>
-                        <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td>
+                        <td><?= $row['mark']."/60" ?></td> 
+                        <td><?= Html::a('Delete', ['deletedata', 'id' => $row['id']], [
+                            'class' => 'btn btn-danger btn-xs',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                            ],
+                        ]) ?></td>
+                        <!-- <td><?= number_format((float)$row['mark']/$total_soalan*100, 2, '.', ''); ?></td> -->
                     </tr>
                     <?php endforeach; ?>
+                    
                     
                 </tbody>
             </table>
         </div>
-    </div><br><br><br><br><br><br><br><br><br>
+    </div>
 </div>
+
+
+
+<!--  <?=
+  GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+
+                            'mark_id',
+                            'mark_total',
+                            'trainer_id',
+                            'trainerAnswer_id',
+
+                            ['class' => 'yii\grid\ActionColumn'],
+                        ],
+                    ]); 
+?>
+ -->
 
 
 

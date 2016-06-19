@@ -41,12 +41,20 @@ class MarkSearch extends Mark
      */
     public function search($params)
     {
-        $query = Mark::find();
-        
+
+        $query = Mark::find(); 
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+ 
+        $dataProvider->setSort([
+            'attributes' => [
+                    'mark_total',
+                    'asc' => ['mark_total' =>SORT_ASC],
+                ]
+            ]);
 
         $this->load($params);
 

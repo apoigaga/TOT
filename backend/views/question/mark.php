@@ -71,7 +71,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
             }else if(($totalAll <= 69) && ($totalAll >= 50))      {
 
                 echo "<center><h3>YOU HAVE FINISHED ANSWER ALL THE QUESTIONS</h3></center>";
-                echo "<h3>Congratulations, You have passed the exam!</h3>";
+                echo "<h2>Please try again!!!</h2>";
                 echo "<h1>YOUR SCORE!</h1>";
                 
                 //echo "<h1>LOW COMPETENT!</h1>";
@@ -129,7 +129,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
                 </tr>
                 <tr>
                     <td>31 - 40</td>
-                    <td>Low Competent</td>
+                    <td>Moderate</td>
                 </tr>
                 <tr>
                     <td>Below 30</td>

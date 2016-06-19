@@ -28,7 +28,8 @@ class Question extends \yii\db\ActiveRecord
         return [
             [['question', 'code'], 'required'],
             [['question'], 'string', 'max' => 5000],
-            [['question', 'section'], 'string']
+            [['question', 'section'], 'string'],
+            [['question', 'level'], 'string']
 
         ];
     }
@@ -43,6 +44,7 @@ class Question extends \yii\db\ActiveRecord
             'question' => 'Question',
             'code' => 'Question Code',
             'section' => 'Section',
+            'level' => 'Level'
         ];
     }
 

@@ -55,7 +55,9 @@ $total_markah111 = $totmarkah[0]['totmark'];
 <span id='et' ></span></p>
 
 <p>bal time
-<span id='bt' ></span></p>    -->                     
+<span id='bt' ></span></p>       -->     
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -112,36 +114,14 @@ $total_markah111 = $totmarkah[0]['totmark'];
                             </form>
 
 
-     
-
-                            <!-- <div class="panel panel-default">
-                              <div class="panel-body">
-                                Basic panel example
-                              </div>
-                            </div>
- -->
-                            <!-- <iframe src="http://localhost/TOT/backend/web/index.php?r=question%2Fsoalan" width="100%" height="650" frameborder="0" scrolling="yes"></iframe> -->
-                            <?php 
-
-                            if($total_soalan != $total_jawapan)
-                            {
-                                echo "<center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center>";
-                                $this->title = 'Questions';
-
-                            }else{
-                                
-                                 header("Location: /TOT/backend/web/index.php?r=question%2Fmark"); 
-                                exit();                                        
-
-                            }
-
-                            ?>
-                            
-                                 <div class="question-index">
-                                    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-                                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-                                    <?php $form = ActiveForm::begin([
+<table border="0" align="center">
+    <tr>
+    <th><center><h1>ONLINE EXAM TRAINING FOR TRAINER</h1></center></th>
+    </tr>
+</table>
+<div class="scroll">
+    <table>
+        <tr><?php $form = ActiveForm::begin([
                                         'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
 
                                         ]);
@@ -247,12 +227,17 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 
 
-        //echo $dataT;   
-        echo ".......";  
-        echo "<br><br>"; 
-        echo ".......";     
+        echo "";       
 
-    ?>
+    ?></tr>
+    </table>
+</div>
+
+<!-- //paste kt sini -->
+
+
+
+                           
   
              
     <script type="text/javascript"> 
@@ -346,4 +331,5 @@ tim = setTimeout("f2()", 1000);
 
 </body>
 </html>
+
 

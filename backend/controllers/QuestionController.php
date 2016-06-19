@@ -39,12 +39,14 @@ class QuestionController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new QuestionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $searchModel = new QuestionSearch();
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $question = Question::find()->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'question' => $question,
+            // 'searchModel' => $searchModel,
+            // 'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -95,28 +97,93 @@ class QuestionController extends Controller
         }
         else{
             
-            $queryA = new Query;
-            $queryA  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                     ->from('question')
-                     ->where('section = "A"')
-                     ->orderBy('rand()')
-                     ->limit(35);
+            /************yang ni untuk section A *******************/
 
-            $queryB = new Query;
-            $queryB  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                     ->from('question')
-                     ->where('section = "B"')
-                     ->orderBy('rand()')
-                     ->limit(7);
+            $queryAeasy = new Query;
+            $queryAeasy  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                         ->from('question')
+                         ->where('section = "A"')
+                         ->andwhere('level = "easy"')
+                         ->orderBy('rand()')
+                         ->limit(12);
 
-            $queryC = new Query;
-            $queryC  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
-                     ->from('question')
-                     ->where('section = "C"')
-                     ->orderBy('rand()')
-                     ->limit(18);
+
+            $queryAmoderate = new Query;
+            $queryAmoderate  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                             ->from('question')
+                             ->where('section = "A"')
+                             ->andwhere('level = "moderate"')
+                             ->orderBy('rand()')
+                             ->limit(11); 
+
+            $queryAdifficult = new Query;
+            $queryAdifficult ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                             ->from('question')
+                             ->where('section = "A"')
+                             ->andwhere('level = "difficult"')
+                             ->orderBy('rand()')
+                             ->limit(12);  
+
+                     /****************yang ni untuk section B ***********/
+
+
+            $queryBeasy = new Query;
+            $queryBeasy  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                         ->from('question')
+                         ->where('section = "B"')
+                         ->andwhere('level = "easy"')
+                         ->orderBy('rand()')
+                         ->limit(2);
+
+            $queryBmoderate = new Query;
+            $queryBmoderate  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                             ->from('question')
+                             ->where('section = "B"')
+                             ->andwhere('level = "moderate"')
+                             ->orderBy('rand()')
+                             ->limit(3);
+
+            $queryBdifficult = new Query;
+            $queryBdifficult ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                             ->from('question')
+                             ->where('section = "B"')
+                             ->andwhere('level = "difficult"')
+                             ->orderBy('rand()')
+                             ->limit(2);         
+
+                       /****************yang ni untuk section C ***********/
+
+            $queryCeasy = new Query;
+            $queryCeasy  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                         ->from('question')
+                         ->where('section = "C"')
+                         ->andwhere('level = "easy"')
+                         ->orderBy('rand()')
+                         ->limit(6);
+
+            $queryCmoderate = new Query;
+            $queryCmoderate  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                         ->from('question')
+                         ->where('section = "C"')
+                         ->andwhere('level = "moderate"')
+                         ->orderBy('rand()')
+                         ->limit(6);
+                         
+            $queryCdifficult = new Query;
+            $queryCdifficult  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
+                         ->from('question')
+                         ->where('section = "C"')
+                         ->andwhere('level = "difficult"')
+                         ->orderBy('rand()')
+                         ->limit(6);
+                         
+
             
-            $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
+            // $commandR = $queryA->union($queryB)->union($queryC)->createCommand();
+            $commandR = $queryAeasy->union($queryAmoderate)->union($queryAdifficult)->union($queryBeasy)
+            ->union($queryBmoderate)->union($queryBdifficult)->union($queryCeasy)->union($queryCmoderate)
+            ->union($queryCdifficult)->createCommand();
+
             $data = $commandR->queryAll();
 
             $items = ArrayHelper::map(Answer::find()->all(),'answer_id','answer');
