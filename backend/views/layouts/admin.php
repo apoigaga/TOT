@@ -32,6 +32,11 @@ use yii\helpers\Html;
         </tr> 
         <tr>
             <th scope="row">3</th>
+            <td>Statistics answer</td>
+            <td><?= Html::a('VIEW', ['/answer/statistic'], ['class'=>'btn btn-info btn-xs']) ?></td>
+        </tr>  
+        <tr>
+            <th scope="row">3</th>
             <td>Set Timer</td>
             <td><?= Html::a('SET', ['/exam-time/index'], ['class'=>'btn btn-info btn-xs']) ?></td>
         </tr>   
