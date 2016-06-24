@@ -119,4 +119,9 @@ class AnswerController extends Controller
         }
     }
 
+    public function actionStatistic()
+    {
+        return $this->render('statistics');
+    }
+
 }
