@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use mPDF;
 use backend\models\Answer;
 use backend\models\AnswerSearch;
 use yii\web\Controller;
@@ -122,6 +123,24 @@ class AnswerController extends Controller
     public function actionStatistic()
     {
         return $this->render('statistics');
+    }
+
+    public function actionPdf()
+    {        
+        $mpdf = new mPDF;
+        $mpdf->WriteHTML($this->renderPartial('pdf'));
+          $mpdf->Output();
+          exit;
+        // $mpdf=new mPDF('c', 'A4-P');
+        // $mpdf->WriteHTML($this->renderPartial('pdf', [
+        //     ]));
+        // $mpdf->Output();
+        // exit;
+    }
+
+    public function actionGraph()
+    {
+        return $this->render('graph');
     }
 
 }

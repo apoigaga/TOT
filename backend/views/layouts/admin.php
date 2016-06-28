@@ -33,7 +33,8 @@ use yii\helpers\Html;
         <tr>
             <th scope="row">3</th>
             <td>Statistics answer</td>
-            <td><?= Html::a('VIEW', ['/answer/statistic'], ['class'=>'btn btn-info btn-xs']) ?></td>
+            <td><?= Html::a('VIEW', ['/answer/statistic'], ['class'=>'btn btn-info btn-xs']) ?>
+            <?= Html::a('GRAPH', ['/answer/graph'], ['class'=>'btn btn-default btn-xs']) ?></td>
         </tr>  
         <tr>
             <th scope="row">3</th>

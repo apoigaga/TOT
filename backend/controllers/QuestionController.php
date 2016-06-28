@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use mPDF;
 use backend\models\Question;
 use backend\models\QuestionSearch;
 use yii\web\Controller;
@@ -445,5 +446,18 @@ public function actionBack()
     public function actionMark()
     {
         return $this->render('mark');
+    }
+
+     public function actionPdf()
+    {        
+        $mpdf = new mPDF;
+        $mpdf->WriteHTML($this->renderPartial('pdf'));
+          $mpdf->Output();
+          exit;
+        // $mpdf=new mPDF('c', 'A4-P');
+        // $mpdf->WriteHTML($this->renderPartial('pdf', [
+        //     ]));
+        // $mpdf->Output();
+        // exit;
     }
 }
