@@ -4,11 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "hash": "88c82cf44ddb0f3cc9feda16c666bb42",
     "content-hash": "335f6d16df464105f85cea48d19a33d6",
-=======
->>>>>>> f3eeceec2f4999ee13e911d2e3042fd4e8bf2667
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -61,16 +58,16 @@
         },
         {
             "name": "bower-asset/bootstrap3-dialog",
-            "version": "v1.35.1",
+            "version": "v1.35.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nakupanda/bootstrap3-dialog.git",
-                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931"
+                "reference": "49b786d4949bb02a22a9358d7d65f30e058c5438"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/d2a240e776951bcf61ecebc0c358a7db801ca931",
-                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/49b786d4949bb02a22a9358d7d65f30e058c5438",
+                "reference": "49b786d4949bb02a22a9358d7d65f30e058c5438",
                 "shasum": ""
             },
             "require": {
@@ -608,12 +605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-dialog.git",
-                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892"
+                "reference": "a5f092064e98881a3bf3c4891a8e4f3e247baf3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/270b96ee983b9ec2264ca66c0d9de2354fb10892",
-                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/a5f092064e98881a3bf3c4891a8e4f3e247baf3c",
+                "reference": "a5f092064e98881a3bf3c4891a8e4f3e247baf3c",
                 "shasum": ""
             },
             "require": {
@@ -652,7 +649,7 @@
                 "modal",
                 "yii2"
             ],
-            "time": "2016-04-27 19:12:29"
+            "time": "2016-06-23 06:37:44"
         },
         {
             "name": "kartik-v/yii2-dropdown-x",
