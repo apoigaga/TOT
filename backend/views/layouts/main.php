@@ -35,11 +35,17 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Admin', 'url' => ['/layouts/admin']],
+       ['label' => 'Home', 'url' => Yii::$app->homeUrl],
+       ['label' => 'Admin', 'url' => ['/layouts/admin']],
     ];
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+
+        $menuItems = [
+            ['label' => 'Home', 'url' => Yii::$app->homeUrl],
+            ['label' => 'Login', 'url' => ['/site/login']],
+        ];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
