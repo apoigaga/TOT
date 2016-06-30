@@ -119,7 +119,7 @@ class QuestionController extends Controller
                          ->where('section = "A"')
                          ->andwhere('level = "easy"')
                          ->orderBy('rand()')
-                         ->limit(12);
+                         ->limit(1);
 
 
             $queryAmoderate = new Query;
@@ -128,7 +128,7 @@ class QuestionController extends Controller
                              ->where('section = "A"')
                              ->andwhere('level = "moderate"')
                              ->orderBy('rand()')
-                             ->limit(11); 
+                             ->limit(1); 
 
             $queryAdifficult = new Query;
             $queryAdifficult ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -136,7 +136,7 @@ class QuestionController extends Controller
                              ->where('section = "A"')
                              ->andwhere('level = "difficult"')
                              ->orderBy('rand()')
-                             ->limit(12);  
+                             ->limit(1);  
 
                      /****************yang ni untuk section B ***********/
 
@@ -147,7 +147,7 @@ class QuestionController extends Controller
                          ->where('section = "B"')
                          ->andwhere('level = "easy"')
                          ->orderBy('rand()')
-                         ->limit(2);
+                         ->limit(1);
 
             $queryBmoderate = new Query;
             $queryBmoderate  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -155,7 +155,7 @@ class QuestionController extends Controller
                              ->where('section = "B"')
                              ->andwhere('level = "moderate"')
                              ->orderBy('rand()')
-                             ->limit(3);
+                             ->limit(1);
 
             $queryBdifficult = new Query;
             $queryBdifficult ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -163,7 +163,7 @@ class QuestionController extends Controller
                              ->where('section = "B"')
                              ->andwhere('level = "difficult"')
                              ->orderBy('rand()')
-                             ->limit(2);         
+                             ->limit(1);         
 
                        /****************yang ni untuk section C ***********/
 
@@ -173,7 +173,7 @@ class QuestionController extends Controller
                          ->where('section = "C"')
                          ->andwhere('level = "easy"')
                          ->orderBy('rand()')
-                         ->limit(6);
+                         ->limit(1);
 
             $queryCmoderate = new Query;
             $queryCmoderate  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -181,7 +181,7 @@ class QuestionController extends Controller
                          ->where('section = "C"')
                          ->andwhere('level = "moderate"')
                          ->orderBy('rand()')
-                         ->limit(6);
+                         ->limit(1);
                          
             $queryCdifficult = new Query;
             $queryCdifficult  ->select(['question.question_id AS id','question.question AS soalan','question.code AS qcode'])  
@@ -189,7 +189,7 @@ class QuestionController extends Controller
                          ->where('section = "C"')
                          ->andwhere('level = "difficult"')
                          ->orderBy('rand()')
-                         ->limit(6);
+                         ->limit(1);
                          
 
             
