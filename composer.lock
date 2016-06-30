@@ -5,6 +5,10 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+    "hash": "88c82cf44ddb0f3cc9feda16c666bb42",
+    "content-hash": "335f6d16df464105f85cea48d19a33d6",
+=======
+<<<<<<< HEAD
     "hash": "46315014351a344ebc44fa498e8d37c0",
     "content-hash": "04e3f3d9a54521c845eee0fbf867c5fb",
 =======
@@ -14,6 +18,7 @@
 =======
 >>>>>>> f3eeceec2f4999ee13e911d2e3042fd4e8bf2667
 >>>>>>> 77f35e54fe50a19843476c031f8de7a58a0c2d73
+>>>>>>> 2529f84182656963a878dd31418ff7914b77db8a
     "packages": [
         {
             "name": "bower-asset/bootstrap",
