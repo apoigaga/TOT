@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">       
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12" >
             <div class="x_panel">
                 <div class="answer-index">
 
