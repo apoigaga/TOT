@@ -47,7 +47,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 
 ?>
 
-<!-- <body onload=display_ct();>
+<!-- <body onload=display_ct();> 
 <p>current time
 <span id='ct' ></span></p>
 
@@ -122,7 +122,7 @@ $total_markah111 = $totmarkah[0]['totmark'];
 <div class="scroll">
     <table>
         <tr><?php $form = ActiveForm::begin([
-                                        'action' => '/TOT/backend/web/index.php?r=question/soalan-seterusnya'
+                                        'action' => '/TOT/frontend/web/index.php?r=question/soalan-seterusnya'
 
                                         ]);
 
@@ -142,7 +142,6 @@ $total_markah111 = $totmarkah[0]['totmark'];
                                                -> from('question','answer')
                                                -> innerJoin('answer','answer.question_id = question.question_id')
                                                ->where('answer.question_id = "'.$soalan_id.'" ')
-                                               ->orderBy(' rand()')
                                                ->all();
 
                                                $command = $query->createCommand();
