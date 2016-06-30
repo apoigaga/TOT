@@ -139,7 +139,7 @@ use yii\web\JsExpression;
 
 
 ?>
-
+<!-- 
 
                 <?php
                 
@@ -195,8 +195,8 @@ use yii\web\JsExpression;
                 //     echo '<div class="alert alert-danger">No results found.</div>';
                 // }
                 ?>
-
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ -->
+<!-- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <?php 
 
@@ -257,7 +257,7 @@ echo Highcharts::widget([
         ]]
     ]
 ]);
-?>
+?> -->
 <!-- 
 $fYearWiseAdm = [];
 //Year wise admission count
@@ -270,59 +270,59 @@ $stuYearAdm = (new \yii\db\Query())
    ->orderBy('YEAR(si.stu_admission_date) DESC')
    ->limit('3')
    ->all(); -->
-<?php
+// <?php
               
-     echo Highcharts::widget([
-         'options' => [
-             'chart'=>[
-                 'type'=>'spline',
+//      echo Highcharts::widget([
+//          'options' => [
+//              'chart'=>[
+//                  'type'=>'spline',
 
-             ],
-             'exporting'=>[
-                 'enabled'=>false,
-             ],
-             'credits'=>[
-                 'enabled'=>false,
-             ],
-             'title'=>[
-                 'text'=>'Monthly Average Admission'
-             ],
-             'subtitle'=>[
-                 'text'=>'',
-                 'margin'=>0,
-             ],
-             'xAxis'=>[
-                 'categories'=> ['Jan','Sep', 'Oct', 'Nov']
-             ],
-             'yAxis'=>[
-                 'title'=>[
-                     'text'=>'Admission Count',
-                 ]
-             ],
-             'plotOptions'=>[
-                 'column'=>[
-                     'pointPadding'=>0.2,
-                     'borderWidth'=>0
-                 ],
-             ],
-             'series'=> [[
-                     'type'=> 'spline',
-                     'name'=> 'highly competent',
-                     'data'=> $mark
-                 ], [
-                     'type'=> 'spline',
-                     'name'=> 'competent',
-                     'data'=> $mark1
-                 ], [
-                     'type'=> 'spline',
-                     'name'=> 'moderate',
-                     'data'=> $mark2
-                 ], [
-                     'type'=> 'spline',
-                     'name'=> 'fail',
-                     'data'=> $mark3
-                 ]]
-         ],
-     ]);
+//              ],
+//              'exporting'=>[
+//                  'enabled'=>false,
+//              ],
+//              'credits'=>[
+//                  'enabled'=>false,
+//              ],
+//              'title'=>[
+//                  'text'=>'Monthly Average Admission'
+//              ],
+//              'subtitle'=>[
+//                  'text'=>'',
+//                  'margin'=>0,
+//              ],
+//              'xAxis'=>[
+//                  'categories'=> ['Jan','Sep', 'Oct', 'Nov']
+//              ],
+//              'yAxis'=>[
+//                  'title'=>[
+//                      'text'=>'Admission Count',
+//                  ]
+//              ],
+//              'plotOptions'=>[
+//                  'column'=>[
+//                      'pointPadding'=>0.2,
+//                      'borderWidth'=>0
+//                  ],
+//              ],
+//              'series'=> [[
+//                      'type'=> 'spline',
+//                      'name'=> 'highly competent',
+//                      'data'=> $mark
+//                  ], [
+//                      'type'=> 'spline',
+//                      'name'=> 'competent',
+//                      'data'=> $mark1
+//                  ], [
+//                      'type'=> 'spline',
+//                      'name'=> 'moderate',
+//                      'data'=> $mark2
+//                  ], [
+//                      'type'=> 'spline',
+//                      'name'=> 'fail',
+//                      'data'=> $mark3
+//                  ]]
+//          ],
+//      ]);
 
- ?>
+//  ?>

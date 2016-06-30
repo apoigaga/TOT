@@ -33,14 +33,14 @@ $query3 = new Query;
 $query3 -> select(['question_id','count(trainerAnswer_answer) as total'])
         -> from('trainerAnswer')
         -> where('question_id=3')
-        ->andwhere('trainerAnswer_answer = 10')
+        ->andwhere('trainerAnswer_answer = 11')
         ->andwhere('trainerAnswer_answer IS NOT NULL ');
 
 $query4 = new Query;
 $query4 -> select(['question_id','count(trainerAnswer_answer) as total'])
         -> from('trainerAnswer')
         -> where('question_id=4')
-        ->andwhere('trainerAnswer_answer = 16')
+        ->andwhere('trainerAnswer_answer = 15')
         ->andwhere('trainerAnswer_answer IS NOT NULL ');
 
 $query5 = new Query;
@@ -1409,7 +1409,7 @@ $numbersoalan = 1;
             <th>No</th>
             <th>Questions</th>
             <th>Total Correct Answer</th>  
-            <th>Total All</th>                                                                 
+            <!-- <th>Total All</th>   -->                                                               
         </tr>
     </thead>
     <tbody>
@@ -1419,7 +1419,7 @@ $numbersoalan = 1;
     <th scope="row"><?=  $numbersoalan++; ?></th>
     <td><?= $row['question_id']  ?></td>  
     <td><?= $row['total']  ?></td> 
-     <td><?php foreach ($datat as $row1): ?> <?= $row1['totals']  ?><br><?php endforeach; ?></td>  
+    <!--  <td><?php foreach ($datat as $row1): ?> <?= $row1['totals']  ?><br><?php endforeach; ?></td>   -->
 </tr>
 <?php endforeach; ?>
 
@@ -1427,6 +1427,8 @@ $numbersoalan = 1;
     </table>
 </div>
 
+
+<h1>Total All</h1>
 <table class="table table-hover table-bordered" style="width:100%">
     <thead >
         <tr>

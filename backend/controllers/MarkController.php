@@ -181,4 +181,11 @@ class MarkController extends Controller
         // $mpdf->Output();
         // exit;
     }
+
+    public function actionData()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $mark = \app\models\Mark::find()->all();
+        return $mark;
+    }
 }

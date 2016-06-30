@@ -143,4 +143,11 @@ class AnswerController extends Controller
         return $this->render('graph');
     }
 
+    public function actionData()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $mark = \app\models\Mark::find()->all();
+        return $mark;
+    }
+
 }
