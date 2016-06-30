@@ -49,7 +49,7 @@ $total_jawapan = $totjawapan[0]['totjaw'];
 ?>
 
 
-<div class="col-md-12 col-sm-12 col-xs-12" align="center">
+<div  align="center">
     <div class="x_panel">
         <?php
         //KENA BETULKAN CALCULATION
@@ -98,11 +98,15 @@ $total_jawapan = $totjawapan[0]['totjaw'];
         echo "<h1>".$total_markah111."/".$total_jawapan."</h1>";
         //echo "<h2>Correct!</h2>";
         echo "<h3>Minimum score to pass is 41/60</h3>";
-        
 
         ?>
+</div>
+</div>
+       
 
-        <div class="panel panel-primary" style="width:500px" >
+   <div align="center">   
+
+ <div class="panel panel-primary" style="width:500px" >
     <div class="panel-heading"><b><h4>Score Competency Table</h4></b></div>
     <div class="panel-body">
         <table class = "table table-bordered table-hover" style="width:450px">
@@ -128,11 +132,9 @@ $total_jawapan = $totjawapan[0]['totjaw'];
                     <td>Fail*</td>
                 </tr>
             </tbody>
-        </table>
+        </table><img src="images/feedbackform.jpg" alt="Smiley face" height="200" width="200">
     </div>
 </div>
-    </div>
 </div>
-
-
-
+<!-- <img src="images/feedbackform.jpg" alt="Smiley face" height="200" width="200">
+<?= Html::img('images/feedbackform.jpg');?> -->
