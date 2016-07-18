@@ -35,14 +35,6 @@ AppAsset::register($this);
         ],
     ]);
 
-
-    // $menuItems = [
-    //     ['label' => 'Home', 'url' => ['/site/index']],
-    //     ['label' => 'About', 'url' => ['/site/about']],
-    //     ['label' => 'Contact', 'url' => ['/site/contact']],
-    // ];
-
-
     $menuItems = [
         ['label' => 'Home', 'url' => Yii::$app->homeUrl],
     ];
@@ -62,9 +54,7 @@ AppAsset::register($this);
 
         $menuItems = [
         ['label' => 'Login', 'url' => ['/site/login']],
-        ['label' => 'Admin Login', 'url' => ['/site/login']],
         ['label' => 'Signup', 'url' => ['/site/signup']],
-        ['label' => '', 'url' => ['/trainer/create']],
         ];
     } 
     else {
