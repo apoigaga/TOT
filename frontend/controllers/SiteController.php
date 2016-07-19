@@ -74,8 +74,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-         if (\Yii::$app->user->isGuest){
-            return $this->redirect(['site/login']);
+        if (\Yii::$app->user->isGuest){
+            return $this->render('index');
         }
         else {
             $role = Yii::$app->user->identity->role;
