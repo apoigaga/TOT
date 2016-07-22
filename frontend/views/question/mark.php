@@ -132,9 +132,11 @@ $total_jawapan = $totjawapan[0]['totjaw'];
                     <td>Fail*</td>
                 </tr>
             </tbody>
-        </table><img src="images/feedbackform.jpg" alt="Smiley face" height="200" width="200">
+        </table>
     </div>
 </div>
+<img src="images/feedbackform.jpg" alt="Smiley face" height="200" width="200">
+<br>
+<br>
+<a class="btn btn-primary" href="https://cbic1.typeform.com/to/lwaZAO" role="button"> Feedback </a>
 </div>
-<!-- <img src="images/feedbackform.jpg" alt="Smiley face" height="200" width="200">
-<?= Html::img('images/feedbackform.jpg');?> -->
