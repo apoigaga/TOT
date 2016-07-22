@@ -79,7 +79,7 @@ $this->title = 'Training of Trainers';
         krajeeDialog.confirm("This exam will require you to answer 60 question within 90 minutes. Goodluck!!!", function (result) {
             if (result) {
               // alert('Great! You accepted!');
-              document.location.href = '/TOT/frontend/web/index.php?r=question%2Fsoalan'
+              document.location.href = '/frontend/web/index.php?r=question%2Fsoalan'
             }
         });
     });
